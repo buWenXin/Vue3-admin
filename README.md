@@ -7,6 +7,6 @@
 - Pinia
 - Axios
 - Element-Push
-- unplugin-vue-components  组件自动导入
-- unplugin-auto-import
+- unplugin-vue-components + unplugin-auto-import 组件自动导入
+- VueUse (Vue工具函数) 
 

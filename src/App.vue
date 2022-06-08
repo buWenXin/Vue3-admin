@@ -2,24 +2,15 @@
 <template>
    <header>
       <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125"/>
-
       <div class="wrapper">
          <HelloWorld msg="You did it!"/>
          <div style="width: 600px;">
-            <el-button type="primary">Primary</el-button>
+            <el-button type="primary" @click="testClick">改变主题色</el-button>
             <el-button type="success">Success</el-button>
             <el-button type="info">Info</el-button>
             <el-button type="warning">Warning</el-button>
             <el-button type="danger">Danger</el-button>
          </div>
-         <el-select v-model="value" clearable placeholder="Select">
-            <el-option
-                  v-for="item in options"
-                  :key="item.value"
-                  :label="item.label"
-                  :value="item.value"
-            />
-         </el-select>
          <nav>
             <RouterLink to="/">Home</RouterLink>
             <RouterLink to="/about">About</RouterLink>
@@ -33,32 +24,16 @@
 <script setup lang="ts">
 import {RouterLink, RouterView} from 'vue-router'
 import HelloWorld from '@/components/HelloWorld.vue'
+import { useCssVar } from '@vueuse/core'
+import {ref} from "vue";
 
-import { ref } from 'vue'
+function testClick() {
+   const key = ref('--el-color-success')
+   const colorVal = useCssVar(key)
+   colorVal.value = "red"
+}
 
-const value = ref('')
-const options = [
-   {
-      value: 'Option1',
-      label: 'Option1',
-   },
-   {
-      value: 'Option2',
-      label: 'Option2',
-   },
-   {
-      value: 'Option3',
-      label: 'Option3',
-   },
-   {
-      value: 'Option4',
-      label: 'Option4',
-   },
-   {
-      value: 'Option5',
-      label: 'Option5',
-   },
-]
+
 </script>
 
 <style>
