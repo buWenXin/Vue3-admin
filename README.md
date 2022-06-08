@@ -1,0 +1,9 @@
+# Vue3-Admin
+#### 技术栈：
+- Vue3
+- TypeScript
+- Vite
+- Vue-Router
+- Pinia
+- Axios
+- Element-Push
