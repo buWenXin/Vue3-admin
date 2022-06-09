@@ -6,6 +6,8 @@ import router from './router'
 
 const app = createApp(App)
 
+import 'element-plus/theme-chalk/dark/css-vars.css'
+
 app.use(createPinia())
 app.use(router)
 
