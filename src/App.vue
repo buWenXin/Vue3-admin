@@ -4,12 +4,13 @@
       <div class="wrapper">
          <HelloWorld msg="You did it!"/>
          <div style="width: 600px;">
-            <el-button type="primary">改变主题色</el-button>
+            <el-button type="primary" @click="three">改变主题色</el-button>
             <el-button type="success">Success</el-button>
             <el-button type="info">Info</el-button>
             <el-button type="warning">Warning</el-button>
             <el-button type="danger">Danger</el-button>
          </div>
+
          <nav>
             <RouterLink to="/">Home</RouterLink>
             <RouterLink to="/about">About</RouterLink>
@@ -32,10 +33,13 @@ function testClick() {
    colorVal.value = "red"
 }
 
-import {useDark, useToggle} from '@vueuse/core'
+import {useDark} from '@vueuse/core';
 
-const isDark = useDark() 
-const toggleDark = useToggle(isDark)
+const isDark = useDark()
+
+function three() {
+   isDark.value = !isDark.value;
+}
 
 
 </script>
