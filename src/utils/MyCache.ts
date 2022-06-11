@@ -1,9 +1,9 @@
-type keys = "token" | "userinfo";
+type keys = "token" | "userinfo"|"auth";
 
 /**
  * 本地缓存工具类/
  */
-export class Cache {
+export class MyCache {
 
     static setItem(keys: keys, data: any): void {
         const stringify = JSON.stringify(data);

@@ -2,7 +2,7 @@ import type {AxiosInstance, AxiosRequestConfig, AxiosResponse} from "axios";
 import axios from 'axios';
 
 import {ElMessage} from 'element-plus'
-import {Cache} from "@/utils/Cache";
+import {MyCache} from "@/utils/MyCache";
 
 /**
  * 后端统一响应类型
@@ -40,7 +40,7 @@ const axiosInstance: AxiosInstance = axios.create(config);
  */
 axiosInstance.interceptors.request.use((config: AxiosRequestConfig) => {
     //为请求添加token
-    const item = Cache.getItem<string>("token");
+    const item = MyCache.getItem<string>("token");
     if (item != null) {
         config.headers = {
             "token": item
@@ -57,7 +57,7 @@ axiosInstance.interceptors.response.use((res: AxiosResponse<ResponseData<any>>):
     if (res.data.code == 200) {
         return Promise.resolve(res);
     } else if (res.data.code == 401) {//token失效
-        Cache.removeItem("token");
+        MyCache.removeItem("token");
         location.reload();//刷新页面
         return Promise.reject()
     } else {

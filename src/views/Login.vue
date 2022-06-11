@@ -2,21 +2,21 @@
    <div class="login_page">
       <div class="login_word">
          <div class="login_title">{{ title }}</div>
-         <el-form label-width="auto" class="login_from">
-            <el-form-item>
-               <el-input v-model="from.userName" :prefix-icon="UserFilled"/>
+         <el-form label-width="auto" class="login_from" :model="loginDto" :rules="rules" ref="ruleFormRef">
+            <el-form-item prop="userName">
+               <el-input v-model="loginDto.userName" :prefix-icon="UserFilled"/>
             </el-form-item>
-            <el-form-item>
-               <el-input v-model="from.password" :prefix-icon="Lock" show-password/>
+            <el-form-item prop="password">
+               <el-input v-model="loginDto.password" :prefix-icon="Lock" show-password/>
             </el-form-item>
-            <el-form-item>
+            <el-form-item prop="code">
                <div style="display: flex;width: 100%;">
-                  <el-input style="width: 55%" v-model="from.password" :prefix-icon="Checked"/>
-                  <img style="width: 45%;height: 30px" :src="authCodeVo.base64Data" alt="验证码"/>
+                  <el-input style="width: 55%" v-model="loginDto.code" :prefix-icon="Checked"/>
+                  <img @click="getCode" class="login_imgCode" :src="authCodeVo.base64Data" alt="验证码"/>
                </div>
             </el-form-item>
             <el-form-item>
-               <el-checkbox v-model="checked2" label="记住密码" size="large"/>
+               <el-checkbox v-model="storage" label="记住密码" size="large"/>
             </el-form-item>
             <el-form-item>
                <el-button style="width: 100%" type="primary" @click="onSubmit">登录</el-button>
@@ -30,19 +30,49 @@
 import {Lock, Checked, UserFilled} from '@element-plus/icons-vue'
 import {reactive, ref} from "vue";
 import {getAuthCode} from "@/api/LoginApi";
-import type {AuthCodeVo} from "@/model/systemModel/LoginApiModel";
+import type {AuthCodeVo, LoginDto} from "@/model/systemModel/LoginApiModel";
+import type {FormInstance, FormRules} from "element-plus";
+import {MyCache} from "@/utils/MyCache";
 
-const from = reactive({
-   userName: "",
-   password: ""
-});
-const onSubmit = () => {
-   console.log("登录");
-}
-const checked2 = ref(false)
 const title = ref(import.meta.env.VITE_TITLE);
 
 
+/**
+ * ------------------------------------------------------------<-登录表单->----------------------------------------------------------------------------------
+ */
+const loginDto: LoginDto = reactive({
+   code: "",
+   password: "",
+   userName: "",
+   uuid: ""
+});
+//form表单验证:
+const rules = reactive<FormRules>({
+   userName: [
+      {required: true, message: '请输入账号', trigger: 'blur'},
+   ],
+   password: [
+      {required: true, message: '请输入用户密码', trigger: 'blur'},
+   ],
+   code: [
+      {required: true, message: '请输入验证码', trigger: 'blur'},
+   ],
+})
+//from的ref对象
+const ruleFormRef = ref<FormInstance>()
+//提交事件,表单验证
+const onSubmit = () => {
+   ruleFormRef.value?.validate((valid) => {
+      if (valid) {
+         //如果选择记住密码，则在登录后存储密码到本地
+         if (storage.value) {
+            MyCache.setItem("auth", loginDto);
+         } else {
+            MyCache.removeItem("auth");
+         }
+      }
+   })
+}
 /**
  * ------------------------------------------------------------<-获取图片验证码->----------------------------------------------------------------------------------
  */
@@ -51,12 +81,24 @@ const authCodeVo = ref<AuthCodeVo>({
    uuid: ""
 });
 getCode();
+
 function getCode() {
    getAuthCode().then(res => {
       authCodeVo.value = res.data;
+      loginDto.uuid = res.data.uuid;
    });
 }
 
+/**
+ * ------------------------------------------------------------<-存储账号密码->----------------------------------------------------------------------------------
+ */
+const storage = ref(false)
+const item = MyCache.getItem<LoginDto>("auth");
+if (item != null) {
+   storage.value = true;
+   loginDto.userName = item.userName;
+   loginDto.password = item.password;
+}
 
 </script>
 
@@ -66,7 +108,6 @@ function getCode() {
    width: 100%;
    height: 100vh;
    box-sizing: border-box;
-   /*background: linear-gradient(-90deg, #29bdd9 0%, #276ace 100%);*/
    background-image: linear-gradient(-90deg, #29bdd9 0%, #276ace 100%);
    position: relative;
 }
@@ -89,6 +130,12 @@ function getCode() {
    display: flex;
    justify-content: center;
    margin-bottom: 20px;
+}
+
+.login_imgCode {
+   width: 45%;
+   height: 30px;
+   cursor: pointer;
 }
 
 .login_from {
