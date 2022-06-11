@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
+    "test": "vite build --mode test",
     "build": "run-p type-check build-only",
     "preview": "vite preview --port 4173",
     "build-only": "vite build",
@@ -11,6 +12,7 @@
   "dependencies": {
     "@element-plus/icons-vue": "^2.0.5",
     "@vueuse/core": "^8.6.0",
+    "axios": "^0.27.2",
     "element-plus": "^2.2.5",
     "pinia": "^2.0.14",
     "vue": "^3.2.36",

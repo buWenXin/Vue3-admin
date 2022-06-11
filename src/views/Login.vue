@@ -10,8 +10,10 @@
                <el-input v-model="from.password" :prefix-icon="Lock" show-password/>
             </el-form-item>
             <el-form-item>
-               <el-input style="width: 60%" v-model="from.password" :prefix-icon="Checked" show-password/>
-
+               <div style="display: flex;width: 100%;">
+                  <el-input style="width: 55%" v-model="from.password" :prefix-icon="Checked"/>
+                  <img style="width: 45%;height: 30px" :src="authCodeVo.base64Data" alt="验证码"/>
+               </div>
             </el-form-item>
             <el-form-item>
                <el-checkbox v-model="checked2" label="记住密码" size="large"/>
@@ -26,8 +28,9 @@
 
 <script lang="ts" setup>
 import {Lock, Checked, UserFilled} from '@element-plus/icons-vue'
-
 import {reactive, ref} from "vue";
+import {getAuthCode} from "@/api/LoginApi";
+import type {AuthCodeVo} from "@/model/systemModel/LoginApiModel";
 
 const from = reactive({
    userName: "",
@@ -39,6 +42,20 @@ const onSubmit = () => {
 const checked2 = ref(false)
 const title = ref(import.meta.env.VITE_TITLE);
 
+
+/**
+ * ------------------------------------------------------------<-获取图片验证码->----------------------------------------------------------------------------------
+ */
+const authCodeVo = ref<AuthCodeVo>({
+   base64Data: "",
+   uuid: ""
+});
+getCode();
+function getCode() {
+   getAuthCode().then(res => {
+      authCodeVo.value = res.data;
+   });
+}
 
 
 </script>

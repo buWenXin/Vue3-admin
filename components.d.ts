@@ -12,7 +12,6 @@ declare module '@vue/runtime-core' {
     ElInput: typeof import('element-plus/es')['ElInput']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    WelcomeItem: typeof import('./src/components/WelcomeItem.vue')['default']
   }
 }
 
