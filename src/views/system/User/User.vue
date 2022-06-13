@@ -8,6 +8,7 @@
          <el-input v-model="pageDto.nickName"/>
       </SearchItem>
    </SearchPage>
+
    <div class="page_edit">
       <el-button type="primary" @click="openDialog">添加用户</el-button>
    </div>
@@ -43,6 +44,7 @@ import {useUserPage} from "@/views/system/User/User";
 import UpdateUser from "@/views/system/User/son/UpdateUser.vue";
 import {useUserOpen} from "@/views/system/User/son/UpdateUser";
 import type {UserPageVo} from "@/model/systemModel/userModel";
+import SearchPage from "@/components/page/SearchPage/SearchPage.vue";
 
 
 //页面use
