@@ -29,7 +29,7 @@
 <script lang="ts" setup>
 import {Lock, Checked, UserFilled} from '@element-plus/icons-vue'
 import {reactive, ref} from "vue";
-import {getAuthCode, login} from "@/api/LoginApi";
+import {getAuthCode, login} from "@/api/system/loginApi";
 import type {AuthCodeVo, LoginDto} from "@/model/systemModel/LoginApiModel";
 import type {FormInstance, FormRules} from "element-plus";
 import {MyCache} from "@/utils/MyCache";
