@@ -14,9 +14,8 @@
 import {useRouter} from "vue-router";
 import TreeBar from "@/layout/Sidebar/TreeBar.vue";
 import {useUserStore} from "@/stores/user";
-const userStore = useUserStore;
+const userStore = useUserStore();
 const router = useRouter();
-
 
 </script>
 
