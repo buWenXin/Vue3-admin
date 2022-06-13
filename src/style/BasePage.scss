@@ -1,0 +1,39 @@
+$nav-color: #F90;
+
+$page-table-padding: 10px;
+
+//全局页面样式
+.page_Header {
+  background-color: #ffffff;
+  border-radius: 4px;
+  padding: 15px 10px 0;
+  margin-bottom: 13px;
+}
+
+.page_Table {
+  background-color: #ffffff;
+  padding: $page-table-padding;
+  border-radius: 4px;
+  margin-bottom: 13px;
+  margin-top: 5px;
+  overflow: auto;
+}
+
+.page_edit {
+  margin-bottom: 10px;
+}
+
+.home_app {
+  .el-button {
+    padding: 8px 15px;
+  }
+}
+
+.page_edit{
+  .el-button {
+    padding: 7px 15px;
+    font-size: 12px;
+    height: 28px;
+  }
+}
+
