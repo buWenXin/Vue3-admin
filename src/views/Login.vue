@@ -33,6 +33,9 @@ import {getAuthCode, login} from "@/api/system/loginApi";
 import type {AuthCodeVo, LoginDto} from "@/model/systemModel/LoginApiModel";
 import type {FormInstance, FormRules} from "element-plus";
 import {MyCache} from "@/utils/MyCache";
+import {useRouter} from "vue-router";
+
+const router = useRouter();
 
 const title = ref(import.meta.env.VITE_TITLE);
 
@@ -68,6 +71,9 @@ const onSubmit = () => {
             MyCache.setItem("userinfo", res.data.userinfo);
             //如果选择记住密码，则在登录后存储密码到本地
             storageAuth();
+            router.push("/home/index");
+         }).catch(() => {
+            getCode();
          })
       }
    })
