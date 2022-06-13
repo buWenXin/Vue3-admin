@@ -6,11 +6,12 @@ import router from './router'
 
 const app = createApp(App)
 /**
- * ------------------------------------------------------------<-element-plus 样式表->----------------------------------------------------------------------------------
+ * ------------------------------------------------------------<-element-plus 配置->----------------------------------------------------------------------------------
  */
 import 'element-plus/theme-chalk/dark/css-vars.css';
 import 'element-plus/dist/index.css'
 import "@/style/BasePage.scss"
+//注册icon
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
     app.component(key, component)
