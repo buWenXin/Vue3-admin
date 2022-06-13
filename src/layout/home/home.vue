@@ -18,6 +18,7 @@
 import Sidebar from "@/layout/Sidebar/Sidebar.vue";
 import MainHeader from "@/layout/MainHeader/MainHeader.vue";
 
+
 </script>
 
 <style scoped lang="scss">

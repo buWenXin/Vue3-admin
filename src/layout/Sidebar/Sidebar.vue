@@ -3,6 +3,7 @@
       <el-menu :default-active="$route.path" unique-opened style="height: 100vh" background-color="#fff">
          <div class="sidebar_title">
 <!--            <img height="60" src="../../assets/logo1.png"/>-->
+            {{title}}
          </div>
          <TreeBar :list="userStore.menu"/>
       </el-menu>
@@ -10,13 +11,13 @@
 </template>
 
 <script setup lang="ts">
-
-import {useRouter} from "vue-router";
 import TreeBar from "@/layout/Sidebar/TreeBar.vue";
 import {useUserStore} from "@/stores/user";
+import {ref} from "vue";
 const userStore = useUserStore();
-const router = useRouter();
 
+
+const title = ref(import.meta.env.VITE_TITLE);
 </script>
 
 <style scoped>
