@@ -17,7 +17,9 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
     app.component(key, component)
 }
 
+import per from "./permission.ts"
+
 app.use(createPinia())
-app.use(router)
+app.use(router);
 
 app.mount('#app')
