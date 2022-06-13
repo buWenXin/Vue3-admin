@@ -15,8 +15,16 @@ declare module '@vue/runtime-core' {
     ElMenu: typeof import('element-plus/es')['ElMenu']
     ElMenuItem: typeof import('element-plus/es')['ElMenuItem']
     ElSubMenu: typeof import('element-plus/es')['ElSubMenu']
+    FooterPage: typeof import('./src/components/page/FooterPage/FooterPage.vue')['default']
+    FormDialog: typeof import('./src/components/FormDialog/FormDialog.vue')['default']
+    Highlight: typeof import('./src/components/Highlight/highlight.vue')['default']
+    MyRadio: typeof import('./src/components/Radio/MyRadio.vue')['default']
+    RadioItem: typeof import('./src/components/Radio/RadioItem.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SearchItem: typeof import('./src/components/page/SearchPage/son/SearchItem.vue')['default']
+    SearchPage: typeof import('./src/components/page/SearchPage/SearchPage.vue')['default']
+    TablePage: typeof import('./src/components/page/TablePage/TablePage.vue')['default']
   }
 }
 
