@@ -1,8 +1,5 @@
 import {reactive} from "vue";
-
 //代码格式插件
-
-
 import type {childrens, tagsDto} from "@/model/developerToolModel/ApisModel";
 import {getApis} from "@/api/developerTool/developerToolApi";
 import {js_beautify} from 'js-beautify';
