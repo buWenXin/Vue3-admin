@@ -33,10 +33,10 @@
 
 
 <script setup lang="ts">
-import {userApiData} from "~/view/developerTool/ApiTool/ApiTool";
-import ApiMenuItem from "~/view/developerTool/ApiTool/son/ApiMenuItem.vue";
+import {userApiData} from "@/views/developerTool/ApiTool/ApiTool";
+import ApiMenuItem from "@/views/developerTool/ApiTool/son/ApiMenuItem.vue";
 import {ref} from "vue";
-import {childrens} from "~/api/developerTool/model/ApisModel";
+import type {childrens} from "@/model/developerToolModel/ApisModel";
 
 //api接口数据list
 const data = userApiData();

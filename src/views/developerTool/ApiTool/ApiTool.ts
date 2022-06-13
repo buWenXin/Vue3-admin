@@ -1,13 +1,15 @@
-import {getApis} from "~/api/developerTool/developerTool";
-import {childrens, tagsDto} from "~/api/developerTool/model/ApisModel";
 import {reactive} from "vue";
 
 //代码格式插件
-import {js_beautify} from "js-beautify";
+
+
+import type {childrens, tagsDto} from "@/model/developerToolModel/ApisModel";
+import {getApis} from "@/api/developerTool/developerToolApi";
+import {js_beautify} from 'js-beautify';
 
 export function userApiData() {
     let tags: Array<tagsDto> = [];
-    const reactive1:Array<tagsDto> = reactive(tags);
+    const reactive1: Array<tagsDto> = reactive(tags);
     getApis().then(res => {
         console.log(res);
         let definitions = res.data.definitions;
@@ -147,7 +149,7 @@ function getProperties(properties: any, definitions: any, name: any) {
                 data[propertiesKey] = properties[propertiesKey]
                 //如果有描述则添加注释
                 if (properties[propertiesKey].description) {
-                    str+=`
+                    str += `
                       /**
                        * ${properties[propertiesKey].description}
                       */

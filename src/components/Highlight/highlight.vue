@@ -8,7 +8,7 @@
    </div>
 </template>
 <script>
-import {copyText} from "~/utils/MyClipboard";
+
 import 'highlight.js/styles/tokyo-night-dark.css'//主题
 import typescript from 'highlight.js/lib/languages/typescript';//支持的语言
 
@@ -17,6 +17,7 @@ import hljs from 'highlight.js/lib/core';
 hljs.registerLanguage('typescript', typescript);//语言注册
 
 import hljsVuePlugin from "@highlightjs/vue-plugin";
+import {copyText} from "../../utils/MyClipboard";
 
 export default {
    components: {

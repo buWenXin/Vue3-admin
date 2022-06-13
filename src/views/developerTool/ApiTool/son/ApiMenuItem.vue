@@ -8,15 +8,15 @@
             <ApiMenuItem @api-click="apiClick" :list="item.children"/>
          </template>
       </el-sub-menu>
-      <el-menu-item v-else @click="apiClick(item)" :index="item.title">
+      <el-menu-item v-else @click="apiClick(item)" :index="item.url">
          {{ item.title }}
       </el-menu-item>
    </template>
 </template>
 
 <script lang="ts" setup>
-import {MenuHTMLAttributes} from "vue";
-import {childrens, tagsDto} from "~/api/developerTool/model/ApisModel";
+import type {MenuHTMLAttributes} from "vue";
+import type {childrens, tagsDto} from "@/model/developerToolModel/ApisModel";
 
 const props = defineProps<{
    list: MenuHTMLAttributes | Array<tagsDto> | Array<childrens>,
