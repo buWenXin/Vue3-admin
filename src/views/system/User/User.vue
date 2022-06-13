@@ -1,0 +1,70 @@
+<template>
+
+   <SearchPage :handle-search="handleSearch" :handle-refresh="handleRefresh">
+      <SearchItem :span="3.5" label="账号">
+         <el-input v-model="pageDto.userName"/>
+      </SearchItem>
+      <SearchItem :span="3.5" label="昵称">
+         <el-input v-model="pageDto.nickName"/>
+      </SearchItem>
+   </SearchPage>
+   <div class="page_edit">
+      <el-button type="primary" @click="openDialog">添加用户</el-button>
+   </div>
+
+   <TablePage :table-list="tableData.tableList"
+              :total="tableData.total"
+              :loading="tableData.loading"
+              v-model:page-size="pageDto.pageSize"
+              v-model:page-index="pageDto.pageIndex"
+              :get-date="getData">
+      <el-table-column prop="userName" label="账号" align='center'/>
+      <el-table-column prop="nickName" label="用户名称" align='center'/>
+      <el-table-column prop="name" label="角色名称" align='center'/>
+      <el-table-column prop="name" label="角色名称" align='center'/>
+      <el-table-column prop="createBy" label="创建人" align='center'/>
+      <el-table-column prop="createTime" label="创建时间" width="170" align='center'/>
+      <el-table-column prop="updateBy" label="更新人" align='center'/>
+      <el-table-column prop="updateTime" label="更新时间" width="170" align='center'/>
+      <el-table-column width="220px" align='center' label="操作">
+         <template v-slot:default="scope">
+            <el-button type="primary" size="small" @click="handleEdit(scope.row)">修改</el-button>
+            <el-button type="success" size="small" @click="logss(scope.row)">查看</el-button>
+            <el-button type="danger" size="small" @click="logss(scope.row)">删除</el-button>
+         </template>
+      </el-table-column>
+   </TablePage>
+
+   <UpdateUser ref="updateUser" :get-data="getData"/>
+</template>
+
+<script setup lang="ts">
+import {useUserPage} from "~/view/system/User/User";
+import UpdateUser from "~/view/system/User/son/UpdateUser.vue";
+import {useUserOpen} from "~/view/system/User/son/UpdateUser";
+import {UserPageVo} from "~/api/system/model/userModel";
+
+//页面use
+let {getData, handleRefresh, handleSearch, pageDto, tableData} = useUserPage();
+getData();
+
+function logss(row: UserPageVo) {
+   console.log(row);
+}
+
+
+let {open} = useUserOpen();
+
+function openDialog() {
+   open();
+}
+
+function handleEdit(row: UserPageVo) {
+   open(row);
+}
+
+</script>
+
+<style scoped lang="scss">
+
+</style>
