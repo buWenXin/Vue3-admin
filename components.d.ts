@@ -24,6 +24,7 @@ declare module '@vue/runtime-core' {
     ElSubMenu: typeof import('element-plus/es')['ElSubMenu']
     ElTable: typeof import('element-plus/es')['ElTable']
     ElTableColumn: typeof import('element-plus/es')['ElTableColumn']
+    ElTreeSelect: typeof import('element-plus/es')['ElTreeSelect']
     FooterPage: typeof import('./src/components/page/FooterPage/FooterPage.vue')['default']
     FormDialog: typeof import('./src/components/FormDialog/FormDialog.vue')['default']
     Highlight: typeof import('./src/components/Highlight/highlight.vue')['default']

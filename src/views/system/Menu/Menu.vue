@@ -25,11 +25,12 @@
 </template>
 
 <script setup lang="ts">
-import {getMenuList} from "~/api/system/menuApi";
-import {MenuInfoVo} from "~/api/system/model/menuModel";
+
 import {ref} from "vue";
-import UpdateMenu from "~/view/system/Menu/son/UpdateMeun/UpdateMeun.vue";
-import {useMenuOpen} from "~/view/system/Menu/son/UpdateMeun/UpdateMeun";
+import UpdateMenu from "@/views/system/Menu/son/UpdateMeun/UpdateMeun.vue";
+import {useMenuOpen} from "@/views/system/Menu/son/UpdateMeun/UpdateMeun";
+import {getMenuList} from "@/api/system/menuApi";
+import type {MenuInfoVo} from "@/model/systemModel/menuModel";
 
 const loading = ref(false);
 const data = ref<Array<MenuInfoVo>>([]);

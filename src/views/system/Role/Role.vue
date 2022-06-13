@@ -6,12 +6,6 @@
       <SearchItem :span="3" label="类型">
          <el-input v-model="pageDto.type"/>
       </SearchItem>
-      <SearchItem :span="3" label="你好">
-         <el-input/>
-      </SearchItem>
-      <SearchItem :span="3" label="你好">
-         <el-input/>
-      </SearchItem>
    </SearchPage>
 
    <div class="page_edit">
@@ -48,9 +42,6 @@ import type {RolePageVo} from "@/model/systemModel/roleModel";
 import {RoleTypeEnum} from "@/enum/systemEnum";
 import {EnumUtils} from "@/utils/Enum";
 import {useRoleOpen} from "@/views/system/Role/son/UpdateRole/UpdateRole";
-
-
-
 
 let {getData, handleRefresh, handleSearch, pageDto, tableData} = UseRolePage();
 getData();

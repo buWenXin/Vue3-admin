@@ -14,7 +14,7 @@
          </el-col>
          <el-col :span="12">
             <el-form-item label="角色状态">
-               <el-select v-model="roleUpdateDto.status" class="m-2" placeholder="Select">
+               <el-select v-model="roleUpdateDto.status" placeholder="Select">
                   <el-option
                         v-for="item in roleStatus"
                         :key="item.value"
@@ -38,7 +38,10 @@
 
 <script lang="ts" setup>
 import {useRoleForm} from "@/views/system/Role/son/UpdateRole/UpdateRole";
+import {updateRole} from "@/api/system/roleApi";
+import {roleStatus} from "@/enum/systemEnum";
 
+console.log(roleStatus);
 
 let {roleUpdateDto, rules, title, visible} = useRoleForm();
 

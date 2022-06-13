@@ -1,8 +1,10 @@
 import {reactive, ref} from "vue";
-import {MenuOfDto, MenuUpdateDto} from "~/api/system/model/menuModel";
-import {ObjectUtils} from "~/utils/ObjectUtils";
-import {FormRules} from "element-plus/es";
-import {getMenuOf} from "~/api/system/menuApi";
+import type {MenuOfDto, MenuUpdateDto} from "@/model/systemModel/menuModel";
+import {getMenuOf} from "@/api/system/menuApi";
+import type {FormRules} from "element-plus/es";
+import {ObjectUtils} from "@/utils/ObjectUtils";
+
+
 
 const visible = ref(false);
 const title = ref("新增");

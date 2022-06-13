@@ -60,9 +60,9 @@
 </template>
 
 <script lang="ts" setup>
-import {useMenuFrom} from "~/view/system/Menu/son/UpdateMeun/UpdateMeun";
-import {menuUpdate} from "~/api/system/menuApi";
-import {MenuTypeEnum, StatusEnum} from "~/enum/systemEnum";
+import {useMenuFrom} from "@/views/system/Menu/son/UpdateMeun/UpdateMeun";
+import {MenuTypeEnum, StatusEnum} from "@/enum/systemEnum";
+import {menuUpdate} from "@/api/system/menuApi";
 
 
 let {formData, title, visible, rules, menuOfView} = useMenuFrom();
