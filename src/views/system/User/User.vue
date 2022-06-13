@@ -39,10 +39,11 @@
 </template>
 
 <script setup lang="ts">
-import {useUserPage} from "~/view/system/User/User";
-import UpdateUser from "~/view/system/User/son/UpdateUser.vue";
-import {useUserOpen} from "~/view/system/User/son/UpdateUser";
-import {UserPageVo} from "~/api/system/model/userModel";
+import {useUserPage} from "@/views/system/User/User";
+import UpdateUser from "@/views/system/User/son/UpdateUser.vue";
+import {useUserOpen} from "@/views/system/User/son/UpdateUser";
+import type {UserPageVo} from "@/model/systemModel/userModel";
+
 
 //页面use
 let {getData, handleRefresh, handleSearch, pageDto, tableData} = useUserPage();
