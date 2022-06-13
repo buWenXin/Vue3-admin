@@ -37,9 +37,8 @@
 </template>
 
 <script lang="ts" setup>
-import {useRoleForm} from "~/view/system/Role/son/UpdateRole/UpdateRole";
-import {updateRole} from "~/api/system/roleApi";
-import {roleStatus} from "~/enum/systemEnum";
+import {useRoleForm} from "@/views/system/Role/son/UpdateRole/UpdateRole";
+
 
 let {roleUpdateDto, rules, title, visible} = useRoleForm();
 

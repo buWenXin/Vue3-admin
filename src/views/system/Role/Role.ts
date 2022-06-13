@@ -1,7 +1,6 @@
-import {RolePageDto, RolePageVo} from "~/api/system/model/RoleModel";
-import {getRolePage} from "~/api/system/roleApi";
-import {usePage} from "~/components/page/UsePage";
-import {ObjectUtils} from "~/utils/ObjectUtils";
+import {usePage} from "@/components/page/UsePage";
+import type {RolePageDto, RolePageVo} from "@/model/systemModel/roleModel";
+import {getRolePage} from "@/api/system/roleApi";
 
 
 let rolePageDto: RolePageDto = {

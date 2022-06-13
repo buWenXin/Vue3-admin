@@ -42,13 +42,14 @@
 </template>
 
 <script setup lang="ts">
-import {UseRolePage} from "~/view/system/Role/Role";
-import UpdateRole from "~/view/system/Role/son/UpdateRole/UpdateRole.vue";
+import {UseRolePage} from "@/views/system/Role/Role";
+import UpdateRole from "@/views/system/Role/son/UpdateRole/UpdateRole.vue";
+import type {RolePageVo} from "@/model/systemModel/roleModel";
+import {RoleTypeEnum} from "@/enum/systemEnum";
+import {EnumUtils} from "@/utils/Enum";
+import {useRoleOpen} from "@/views/system/Role/son/UpdateRole/UpdateRole";
 
-import {RolePageVo} from "~/api/system/model/RoleModel";
-import {useRoleOpen} from "~/view/system/Role/son/UpdateRole/UpdateRole";
-import {EnumUtils} from "~/utils/Enum";
-import {RoleTypeEnum} from "~/enum/systemEnum";
+
 
 
 let {getData, handleRefresh, handleSearch, pageDto, tableData} = UseRolePage();

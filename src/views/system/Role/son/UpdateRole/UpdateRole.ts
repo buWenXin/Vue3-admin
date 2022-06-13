@@ -1,8 +1,7 @@
 import {reactive, ref} from "vue";
-
-import {RoleUpdateDto} from "~/api/system/model/RoleModel";
-import {FormRules} from "element-plus/es";
-import {ObjectUtils} from "~/utils/ObjectUtils";
+import type {RoleUpdateDto} from "@/model/systemModel/roleModel";
+import type {FormRules} from "element-plus/es";
+import {ObjectUtils} from "@/utils/ObjectUtils";
 
 const visible = ref(false);
 const title = ref("新增");
