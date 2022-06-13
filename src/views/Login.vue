@@ -36,7 +36,6 @@ import {MyCache} from "@/utils/MyCache";
 
 const title = ref(import.meta.env.VITE_TITLE);
 
-
 /**
  * ------------------------------------------------------------<-登录表单->----------------------------------------------------------------------------------
  */
@@ -65,14 +64,10 @@ const onSubmit = () => {
    ruleFormRef.value?.validate((valid) => {
       if (valid) {
          login(loginDto).then(res => {
-            MyCache.setItem("token",res.data.token);
-            MyCache.setItem("userinfo",res.data.userinfo);
+            MyCache.setItem("token", res.data.token);
+            MyCache.setItem("userinfo", res.data.userinfo);
             //如果选择记住密码，则在登录后存储密码到本地
-            if (storage.value) {
-               MyCache.setItem("auth", loginDto);
-            } else {
-               MyCache.removeItem("auth");
-            }
+            storageAuth();
          })
       }
    })
@@ -103,6 +98,16 @@ if (item != null) {
    loginDto.userName = item.userName;
    loginDto.password = item.password;
 }
+
+function storageAuth() {
+   //如果选择记住密码，则在登录后存储密码到本地
+   if (storage.value) {
+      MyCache.setItem("auth", loginDto);
+   } else {
+      MyCache.removeItem("auth");
+   }
+}
+
 
 </script>
 
