@@ -15,8 +15,6 @@ import TreeBar from "@/layout/Sidebar/TreeBar.vue";
 import {useUserStore} from "@/stores/user";
 import {ref} from "vue";
 const userStore = useUserStore();
-
-
 const title = ref(import.meta.env.VITE_TITLE);
 </script>
 
