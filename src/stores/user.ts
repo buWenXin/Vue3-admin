@@ -9,7 +9,7 @@ import {getMenu} from "@/api/system/menuApi";
 // import {Router, useRoute, useRouter} from "vue-router";
 
 //Viet中动态使用模块的方法，import.meta.glob是Viet提供的方法，在代码运行时，导入模块
-const modules = import.meta.glob('../view/**/*.vue')
+const modules = import.meta.glob('../views/**/*.vue')
 
 
 //2.创建store，并导出
@@ -33,6 +33,7 @@ export const useUserStore = defineStore({
             }
             return Promise.reject();
         },
+
         //递归注册路由
         registerRouter(router: Router, data: MenuInfoVo[]) {
             data.forEach(item => {
@@ -43,7 +44,7 @@ export const useUserStore = defineStore({
                             path: item.routerPath,
                             name: item.routerPath,
                             meta: {title: item.name},
-                            component: modules["../view/" + item.componentPath]
+                            component: modules["../views/" + item.componentPath]
                         }
                     )
                 }
