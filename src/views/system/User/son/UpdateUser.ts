@@ -1,7 +1,7 @@
 import {reactive, ref} from "vue";
-import { UserSaveDto} from "~/api/system/model/userModel";
-import {FormRules} from "element-plus/es";
-import {ObjectUtils} from "~/utils/ObjectUtils";
+import {ObjectUtils} from "@/utils/ObjectUtils";
+import type {FormRules} from "element-plus/es";
+import type {UserSaveDto} from "@/model/systemModel/userModel";
 
 const visible = ref(false);
 const title = ref("新增");

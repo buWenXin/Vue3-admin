@@ -27,8 +27,9 @@
 </template>
 
 <script setup lang="ts">
-import {updateUser} from "~/api/system/userAPi";
-import {useUserUpdate} from "~/view/system/User/son/UpdateUser";
+import {updateUser} from "@/api/system/userAPi";
+
+import {useUserUpdate} from "@/views/system/User/son/UpdateUser";
 
 let {rules, title, userSaveDto, visible} = useUserUpdate();
 

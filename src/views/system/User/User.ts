@@ -1,7 +1,6 @@
-import {UserPageDto, UserPageVo} from "~/api/system/model/userModel";
-import {usePage} from "~/components/page/UsePage";
-import {getUserPage} from "~/api/system/userAPi";
-
+import type {UserPageDto, UserPageVo} from "@/model/systemModel/userModel";
+import {getUserPage} from "@/api/system/userAPi";
+import {usePage} from "@/components/page/UsePage";
 
 
 export function useUserPage() {

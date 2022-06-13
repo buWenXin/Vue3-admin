@@ -1,8 +1,8 @@
 import {reactive} from "vue";
-import {useTableData} from "~/common/TabelData";
-import {BasePageDto, BasePageVo} from "~/api/model/baseModel";
-import {ResponseData, ResponsePageData} from "~/utils/request";
-import {ObjectUtils} from "~/utils/ObjectUtils";
+import {ObjectUtils} from "@/utils/ObjectUtils";
+import type {BasePageDto, BasePageVo} from "@/model/baseModel";
+import type {ResponseData, ResponsePageData} from "@/utils/request";
+import {useTableData} from "@/common/TabelData";
 
 
 /**
