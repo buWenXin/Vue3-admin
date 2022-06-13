@@ -29,7 +29,7 @@
 <script lang="ts" setup>
 import {Lock, Checked, UserFilled} from '@element-plus/icons-vue'
 import {reactive, ref} from "vue";
-import {getAuthCode} from "@/api/LoginApi";
+import {getAuthCode, login} from "@/api/LoginApi";
 import type {AuthCodeVo, LoginDto} from "@/model/systemModel/LoginApiModel";
 import type {FormInstance, FormRules} from "element-plus";
 import {MyCache} from "@/utils/MyCache";
@@ -64,12 +64,16 @@ const ruleFormRef = ref<FormInstance>()
 const onSubmit = () => {
    ruleFormRef.value?.validate((valid) => {
       if (valid) {
-         //如果选择记住密码，则在登录后存储密码到本地
-         if (storage.value) {
-            MyCache.setItem("auth", loginDto);
-         } else {
-            MyCache.removeItem("auth");
-         }
+         login(loginDto).then(res => {
+            MyCache.setItem("token",res.data.token);
+            MyCache.setItem("userinfo",res.data.userinfo);
+            //如果选择记住密码，则在登录后存储密码到本地
+            if (storage.value) {
+               MyCache.setItem("auth", loginDto);
+            } else {
+               MyCache.removeItem("auth");
+            }
+         })
       }
    })
 }

@@ -12,11 +12,12 @@ export class MyCache {
 
     static getItem<T>(keys: keys): T | null {
         let t: T;
-        if (localStorage.getItem(keys) != null) {
-            t = JSON.parse(localStorage.getItem(keys) as string);
-            return t
-        } else {
-            return null;
+        const item = localStorage.getItem(keys);
+        if(item!=null){
+            t = JSON.parse(item);
+            return  t;
+        }else {
+            return  null;
         }
     }
 
