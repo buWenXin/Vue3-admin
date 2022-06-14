@@ -5,7 +5,7 @@
     "dev": "vite",
     "test": "vite build --mode test",
     "build": "vite build --mode production",
-    "preview": "vite preview --port 4173"
+    "preview": "vite preview --port 5173"
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.0.5",
