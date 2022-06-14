@@ -14,7 +14,9 @@
 </template>
 
 <script setup lang="ts">
-import {RolePageVo} from "~/api/system/model/RoleModel";
+
+import type {RolePageVo} from "@/model/systemModel/roleModel";
+
 defineProps<{
    loading: boolean,
    tableList: Array<RolePageVo>,

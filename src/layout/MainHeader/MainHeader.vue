@@ -27,7 +27,7 @@
 import { ElMessage, ElMessageBox } from 'element-plus'
 import {useRouter} from "vue-router";
 import {ref} from "vue";
-import SystemSetup from "@/layout/MainHeader/son/SystemSetup.vue";
+import type SystemSetup from "@/layout/MainHeader/son/SystemSetup.vue";
 
 
 
