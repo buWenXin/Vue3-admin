@@ -29,7 +29,7 @@ export default defineConfig({
    ],
    server: {
       proxy: {
-         // 选项写法
+         // 拦截/dev-api路由的请求，转发到target的地址中去
          '/dev-api': {
             target: 'http://192.168.8.115:12306',
             changeOrigin: true,
@@ -38,3 +38,4 @@ export default defineConfig({
       }
    }
 })
+
