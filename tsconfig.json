@@ -5,14 +5,29 @@
       "@/*": [
         "./src/*"
       ]
-    }
+    },
+    "target": "esnext",
+    "useDefineForClassFields": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "strict": true,
+    "jsx": "preserve",
+    "sourceMap": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "lib": [
+      "esnext",
+      "dom"
+    ],
+    "skipLibCheck": true
   },
   "references": [
     {
       "path": "./tsconfig.config.json"
     }
   ],
-  "extends": "@vue/tsconfig/tsconfig.web.json",
+  //强制使用 import type 导入强类型，如果你不想使用则可以不继承这个文件，可以自定义 tsconfig
+  //  "extends": "@vue/tsconfig/tsconfig.web.json",
   "include": [
     "env.d.ts",
     "components.d.ts",
