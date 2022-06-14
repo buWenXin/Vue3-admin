@@ -32,6 +32,7 @@ import {useMenuOpen} from "@/views/system/Menu/son/UpdateMeun/UpdateMeun";
 import {getMenuList} from "@/api/system/menuApi";
 import type {MenuInfoVo} from "@/model/systemModel/menuModel";
 
+
 const loading = ref(false);
 const data = ref<Array<MenuInfoVo>>([]);
 //请求数据
