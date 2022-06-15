@@ -28,11 +28,15 @@
   ],
   //强制使用 import type 导入强类型，如果你不想使用则可以不继承这个文件，可以自定义 tsconfig
   //  "extends": "@vue/tsconfig/tsconfig.web.json",
+
+  //指定要编译的路径列表
   "include": [
     "env.d.ts",
     "components.d.ts",
     "auto-imports.d.ts",
     "src/**/*",
-    "src/**/*.vue"
+    "src/*.ts",
+    "src/**/*.vue",
+    "src/*.vue"
   ]
 }

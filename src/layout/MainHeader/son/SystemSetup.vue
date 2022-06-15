@@ -33,7 +33,5 @@ defineExpose({
 </script>
 
 <style scoped>
-.sss {
-   background: #409EFF;
-}
+
 </style>
