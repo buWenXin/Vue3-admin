@@ -59,9 +59,9 @@ const getCheckedKeys = () => {
 const onSubmit = () => {
    const amongMenuDto: AmongMenuDto = {
       menuIds: [],
-      roleId: roleId
+      roleId: roleId.value
    }
-   console.log(roleId);
+   console.log(roleId.value);
    amongMenuDto.menuIds = getCheckedKeys() as Array<number>;
    amongMenu(amongMenuDto).then(res => {
       ElMessage.success("分配成功");

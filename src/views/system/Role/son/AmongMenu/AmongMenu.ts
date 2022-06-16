@@ -41,15 +41,14 @@ function getMenuIds(roleId: number) {
 
 const dialogVisible = ref(false);
 const loading = ref(false);
-let roleId: number = 0;
+const roleId = ref(0);
 
 
 //打开弹出层
 export function amongMenuOpen(id: number) {
    getMenuData();
    getMenuIds(id);
-   roleId = id;
-   console.log(roleId);
+   roleId.value = id;
    dialogVisible.value = true;
 }
 
