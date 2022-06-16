@@ -1,5 +1,9 @@
 <template>
    <el-dialog v-model="dialogVisible" title="菜单权限" width="28%" :destroy-on-close="true" :close-on-click-modal="false">
+
+
+      <el-tree :data="menuData" show-checkbox node-key="id" :props="defaultProps"/>
+
       <template #footer>
          <div class="dialog-footer">
             <el-button @click="amongMenuClose">关闭</el-button>
@@ -18,6 +22,13 @@ const props = defineProps<{
    getData(): void
 }>();
 
+const defaultProps = {
+   children: 'children',
+   label: 'name',
+}
+
+
+const value = ref(0)
 
 /**
  * ------------------------------------------------------------<-表单提交处理->----------------------------------------------------------------------------------
@@ -30,7 +41,7 @@ const onSubmit = () => {
 }
 
 //页面显示控制
-let {amongMenuClose, dialogVisible} = useAmongMenuControl();
+let {amongMenuClose, dialogVisible, menuData} = useAmongMenuControl();
 
 
 </script>

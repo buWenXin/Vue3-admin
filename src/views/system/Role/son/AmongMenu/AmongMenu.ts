@@ -1,4 +1,19 @@
 import {ref} from "vue";
+import {MenuInfoVo} from "@/model/systemModel/menuModel";
+import {getMenuList} from "@/api/system/menuApi";
+
+
+
+/*
+ * ------------------------------------------------------------<-菜单数据->----------------------------------------------------------------------------------
+ */
+const menuData = ref<Array<MenuInfoVo>>([]);
+function getMenuData() {
+   getMenuList().then(res => {
+      console.log(res.data);
+      menuData.value = res.data;
+   })
+}
 
 /*
  * ------------------------------------------------------------<-页面显示控制->----------------------------------------------------------------------------------
@@ -7,6 +22,7 @@ import {ref} from "vue";
 const dialogVisible = ref(false);
 
 export function amongMenuOpen() {
+   getMenuData();
    dialogVisible.value = true;
 }
 
@@ -17,7 +33,8 @@ function amongMenuClose() {
 export function useAmongMenuControl() {
    return {
       dialogVisible,
-      amongMenuClose
+      amongMenuClose,
+      menuData
    }
 }
 
