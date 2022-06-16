@@ -36,7 +36,7 @@
    </TablePage>
    <UpdateRole ref="updateRoleRef" :get-data="getData"/>
    <!--分配菜单-->
-   <AmongMenu :get-data="getData"/>
+   <AmongMenu ref="amongMenuRef" :get-data="getData"/>
 </template>
 
 <script setup lang="ts">
@@ -46,8 +46,9 @@ import type {RolePageVo} from "@/model/systemModel/roleModel";
 import {RoleTypeEnum} from "@/enum/systemEnum";
 import {EnumUtils} from "@/utils/Enum";
 import {useRoleOpen} from "@/views/system/Role/son/UpdateRole/UpdateRole";
-import {amongMenuOpen, useAmongMenuControl} from "@/views/system/Role/son/AmongMenu/AmongMenu";
+
 import AmongMenu from "@/views/system/Role/son/AmongMenu/AmongMenu.vue";
+import {ref} from "vue";
 
 let {getData, handleRefresh, handleSearch, pageDto, tableData} = UseRolePage();
 getData();
@@ -72,10 +73,13 @@ const typeFormatter = (row: RolePageVo) => {
 /*
  * ------------------------------------------------------------<分配权限页面控制>----------------------------------------------------------------------------------
  */
+const amongMenuRef = ref<InstanceType<typeof AmongMenu>>(null);
+
 //分配菜单
 const handleAmongMenu = (row: RolePageVo) => {
-   amongMenuOpen(row.id);
+   amongMenuRef.value.open(row.id);
 }
+
 //分配权限
 const handleAmongPower = (row: RolePageVo) => {
 

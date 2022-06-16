@@ -6,16 +6,14 @@
             show-checkbox
             default-expand-all
             node-key="id"
-            v-loading="loading"
             highlight-current
             :default-checked-keys="menuIds"
-            :props="defaultProps"
-      />
+            :props="defaultProps"/>
 
       <template #footer>
          <div class="dialog-footer">
-            <el-button @click="amongMenuClose">关闭</el-button>
-            <el-button type="primary" @click="onSubmit" v-loading="loading">提交</el-button>
+            <el-button @click="close">关闭</el-button>
+            <el-button type="primary" @click="onSubmit">提交</el-button>
          </div>
       </template>
    </el-dialog>
@@ -23,20 +21,41 @@
 
 <script setup lang="ts">
 import {ref} from "vue";
-import {useAmongMenuControl} from "@/views/system/Role/son/AmongMenu/AmongMenu";
+
 import {ElMessage, ElTree} from "element-plus";
 import {AmongMenuDto} from "@/model/systemModel/roleModel";
 import {amongMenu} from "@/api/system/roleApi";
+import {useGetMenuData, useGetMenuIds} from "@/views/system/Role/son/AmongMenu/AmongMenu";
 
 const props = defineProps<{
    //提交后，父页面刷新函数
    getData(): void
 }>();
 
-//页面ts
-let {amongMenuClose, dialogVisible, menuData, loading, menuIds, roleId} = useAmongMenuControl();
+let {getMenuData, loading, menuData} = useGetMenuData();
+
+let {getMenuIds, menuIds} = useGetMenuIds();
 
 
+/*
+ * ------------------------------------------------------------<-页面控制->----------------------------------------------------------------------------------
+ */
+const dialogVisible = ref(false);
+
+
+const open = (roleId: number) => {
+   dialogVisible.value = true;
+   getMenuData();
+   getMenuIds(roleId);
+}
+
+//关闭
+const close = () => {
+   dialogVisible.value = false;
+}
+defineExpose({
+   open
+})
 /*
  * ------------------------------------------------------------<-树形组件->----------------------------------------------------------------------------------
  */
@@ -59,13 +78,12 @@ const getCheckedKeys = () => {
 const onSubmit = () => {
    const amongMenuDto: AmongMenuDto = {
       menuIds: [],
-      roleId: roleId.value
+      roleId: 1
    }
-   console.log(roleId.value);
    amongMenuDto.menuIds = getCheckedKeys() as Array<number>;
    amongMenu(amongMenuDto).then(res => {
       ElMessage.success("分配成功");
-      amongMenuClose();
+      close();
       props.getData();
    })
 }
