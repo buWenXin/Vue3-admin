@@ -2,6 +2,7 @@ import {ref} from "vue";
 import {MenuInfoVo} from "@/model/systemModel/menuModel";
 import {getMenuList} from "@/api/system/menuApi";
 import {getRoleMenus} from "@/api/system/roleApi";
+import {AmongMenuDto} from "@/model/systemModel/roleModel";
 
 
 /*
@@ -33,17 +34,22 @@ function getMenuIds(roleId: number) {
    })
 }
 
+
 /*
  * ------------------------------------------------------------<-页面显示控制->----------------------------------------------------------------------------------
  */
 
 const dialogVisible = ref(false);
 const loading = ref(false);
+let roleId: number = 0;
+
 
 //打开弹出层
-export function amongMenuOpen(roleId: number) {
+export function amongMenuOpen(id: number) {
    getMenuData();
-   getMenuIds(roleId);
+   getMenuIds(id);
+   roleId = id;
+   console.log(roleId);
    dialogVisible.value = true;
 }
 
@@ -57,7 +63,8 @@ export function useAmongMenuControl() {
       amongMenuClose,
       menuData,
       loading,
-      menuIds
+      menuIds,
+      roleId
    }
 }
 

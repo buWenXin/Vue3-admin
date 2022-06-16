@@ -24,7 +24,7 @@
 <script setup lang="ts">
 import {ref} from "vue";
 import {useAmongMenuControl} from "@/views/system/Role/son/AmongMenu/AmongMenu";
-import {ElTree} from "element-plus";
+import {ElMessage, ElTree} from "element-plus";
 import {AmongMenuDto} from "@/model/systemModel/roleModel";
 import {amongMenu} from "@/api/system/roleApi";
 
@@ -34,7 +34,7 @@ const props = defineProps<{
 }>();
 
 //页面ts
-let {amongMenuClose, dialogVisible, menuData, loading,menuIds} = useAmongMenuControl();
+let {amongMenuClose, dialogVisible, menuData, loading, menuIds, roleId} = useAmongMenuControl();
 
 
 /*
@@ -55,16 +55,18 @@ const getCheckedKeys = () => {
  * ------------------------------------------------------------<-表单提交处理->----------------------------------------------------------------------------------
  */
 
-
 //提交事件,表单验证
 const onSubmit = () => {
    const amongMenuDto: AmongMenuDto = {
       menuIds: [],
-      roleId: 1
+      roleId: roleId
    }
+   console.log(roleId);
    amongMenuDto.menuIds = getCheckedKeys() as Array<number>;
    amongMenu(amongMenuDto).then(res => {
-      console.log(res);
+      ElMessage.success("分配成功");
+      amongMenuClose();
+      props.getData();
    })
 }
 </script>
