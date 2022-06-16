@@ -26,9 +26,10 @@
       <el-table-column prop="createTime" label="创建时间" width="170" align='center'/>
       <el-table-column prop="updateBy" label="更新人" align='center'/>
       <el-table-column prop="updateTime" label="更新时间" width="170" align='center'/>
-      <el-table-column label="操作" width="230" align='center'>
+      <el-table-column label="操作" width="300" align='center'>
          <template v-slot:default="scope">
             <el-button type="primary" size="small" @click="handleAmongMenu(scope.row)">分配菜单</el-button>
+            <el-button type="primary" size="small" @click="handleAmongPower(scope.row)">分配权限</el-button>
             <el-button type="primary" size="small" @click="handleEdit(scope.row)">修改</el-button>
          </template>
       </el-table-column>
@@ -70,9 +71,13 @@ const typeFormatter = (row: RolePageVo) => {
 /*
  * ------------------------------------------------------------<分配权限页面控制>----------------------------------------------------------------------------------
  */
-
+//分配菜单
 const handleAmongMenu = (row: RolePageVo) => {
    amongMenuOpen();
+}
+//分配权限
+const handleAmongPower = (row: RolePageVo) => {
+
 }
 
 </script>
