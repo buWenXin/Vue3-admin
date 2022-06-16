@@ -40,7 +40,6 @@ getData();
 
 function getData() {
    getMenuList().then(res => {
-      console.log("sss");
       data.value = res.data;
    })
 }

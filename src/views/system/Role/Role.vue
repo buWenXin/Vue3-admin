@@ -26,13 +26,15 @@
       <el-table-column prop="createTime" label="创建时间" width="170" align='center'/>
       <el-table-column prop="updateBy" label="更新人" align='center'/>
       <el-table-column prop="updateTime" label="更新时间" width="170" align='center'/>
-      <el-table-column label="操作" width="130" align='center'>
+      <el-table-column label="操作" width="230" align='center'>
          <template v-slot:default="scope">
+            <el-button type="primary" size="small" @click="handleAmongMenu(scope.row)">分配菜单</el-button>
             <el-button type="primary" size="small" @click="handleEdit(scope.row)">修改</el-button>
          </template>
       </el-table-column>
    </TablePage>
    <UpdateRole ref="updateRoleRef" :get-data="getData"/>
+   <AmongMenu :get-data="getData"/>
 </template>
 
 <script setup lang="ts">
@@ -42,6 +44,8 @@ import type {RolePageVo} from "@/model/systemModel/roleModel";
 import {RoleTypeEnum} from "@/enum/systemEnum";
 import {EnumUtils} from "@/utils/Enum";
 import {useRoleOpen} from "@/views/system/Role/son/UpdateRole/UpdateRole";
+import {amongMenuOpen, useAmongMenuControl} from "@/views/system/Role/son/AmongMenu/AmongMenu";
+import AmongMenu from "@/views/system/Role/son/AmongMenu/AmongMenu.vue";
 
 let {getData, handleRefresh, handleSearch, pageDto, tableData} = UseRolePage();
 getData();
@@ -63,7 +67,13 @@ const typeFormatter = (row: RolePageVo) => {
    return EnumUtils.getEnumDesc(RoleTypeEnum, row.type);
 }
 
+/*
+ * ------------------------------------------------------------<分配权限页面控制>----------------------------------------------------------------------------------
+ */
 
+const handleAmongMenu = (row: RolePageVo) => {
+   amongMenuOpen();
+}
 
 </script>
 

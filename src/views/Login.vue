@@ -1,5 +1,12 @@
 <template>
    <div class="login_page">
+      <div class="login_text">
+         <div class="text">总有一天你将破蛹而出，成长得比人们期待的还要美丽。</div>
+         <div class="text">但这个过程会很痛，会很辛苦，有时候还会觉得灰心。</div>
+         <div class="text">面对着汹涌而来的现实，觉得自己渺小无力。</div>
+         <div class="text">但这，也是生命的一部分。做好现在你能做的，然后，一切都会好的。 加油!</div>
+      </div>
+
       <div class="login_word">
          <div class="login_title">{{ title }}</div>
          <el-form label-width="auto" class="login_from" :model="loginDto" :rules="rules" ref="ruleFormRef">
@@ -155,5 +162,19 @@ function storageAuth() {
 
 .login_from {
 
+}
+
+.login_text {
+   color: #ffffff;
+   position: absolute;
+   width: 450px;
+   top: 600px;
+   left: 0;
+   right: 0;
+   margin: auto;
+}
+
+.text {
+   line-height: 2em;
 }
 </style>

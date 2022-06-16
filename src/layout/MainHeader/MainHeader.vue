@@ -24,46 +24,25 @@
 </template>
 
 <script setup lang="ts">
-import { ElMessage, ElMessageBox } from 'element-plus'
+import {ElMessage, ElMessageBox} from 'element-plus'
 import {useRouter} from "vue-router";
 import {ref} from "vue";
 import type SystemSetup from "@/layout/MainHeader/son/SystemSetup.vue";
-
-
+import {MyCache} from "@/utils/MyCache";
 
 
 const systemSetup = ref<InstanceType<typeof SystemSetup> | null>(null);
 
 const router = useRouter();
 
-const open = () => {
-   ElMessageBox.confirm(
-         'proxy will permanently delete the file. Continue?',
-         'Warning',
-         {
-            confirmButtonText: 'OK',
-            cancelButtonText: 'Cancel',
-            type: 'warning',
-         }
-   )
-         .then(() => {
-            ElMessage({
-               type: 'success',
-               message: 'Delete completed',
-            })
-         })
-         .catch(() => {
-            ElMessage({
-               type: 'info',
-               message: 'Delete canceled',
-            })
-         })
-}
 
 function handleSignOut() {
-   open();
-   // Cache.removeItem("token");
-   // router.push("/login")
+   ElMessageBox.confirm('确定要退出登录吗?', '退出', {
+      type: "warning"
+   }).then(() => {
+      MyCache.removeItem("token");
+      router.push("/login")
+   })
 }
 
 //打开设置页面。
