@@ -9,19 +9,27 @@ import {getRoleMenus} from "@/api/system/roleApi";
  */
 const menuData = ref<Array<MenuInfoVo>>([]);
 
+/**
+ * 获取菜单数据
+ */
 function getMenuData() {
    loading.value = true;
    getMenuList().then(res => {
-      console.log(res.data);
       menuData.value = res.data;
    }).finally(() => {
       loading.value = false;
    })
 }
 
-function getMenuIds() {
-   getRoleMenus(1).then(res => {
-      console.log(res.data);
+const menuIds = ref<Array<number>>([]);
+
+/**
+ * 获取角色拥有的菜单ids
+ */
+function getMenuIds(roleId: number) {
+   menuIds.value = [];
+   getRoleMenus(roleId).then(res => {
+      menuIds.value = res.data;
    })
 }
 
@@ -33,9 +41,9 @@ const dialogVisible = ref(false);
 const loading = ref(false);
 
 //打开弹出层
-export function amongMenuOpen() {
+export function amongMenuOpen(roleId: number) {
    getMenuData();
-   getMenuIds();
+   getMenuIds(roleId);
    dialogVisible.value = true;
 }
 
@@ -48,7 +56,8 @@ export function useAmongMenuControl() {
       dialogVisible,
       amongMenuClose,
       menuData,
-      loading
+      loading,
+      menuIds
    }
 }
 

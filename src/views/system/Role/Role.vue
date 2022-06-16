@@ -35,6 +35,7 @@
       </el-table-column>
    </TablePage>
    <UpdateRole ref="updateRoleRef" :get-data="getData"/>
+   <!--分配菜单-->
    <AmongMenu :get-data="getData"/>
 </template>
 
@@ -73,7 +74,7 @@ const typeFormatter = (row: RolePageVo) => {
  */
 //分配菜单
 const handleAmongMenu = (row: RolePageVo) => {
-   amongMenuOpen();
+   amongMenuOpen(row.id);
 }
 //分配权限
 const handleAmongPower = (row: RolePageVo) => {

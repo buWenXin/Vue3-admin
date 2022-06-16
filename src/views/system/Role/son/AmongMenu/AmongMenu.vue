@@ -8,8 +8,10 @@
             node-key="id"
             v-loading="loading"
             highlight-current
+            :default-checked-keys="menuIds"
             :props="defaultProps"
       />
+
       <template #footer>
          <div class="dialog-footer">
             <el-button @click="amongMenuClose">关闭</el-button>
@@ -32,7 +34,7 @@ const props = defineProps<{
 }>();
 
 //页面ts
-let {amongMenuClose, dialogVisible, menuData, loading} = useAmongMenuControl();
+let {amongMenuClose, dialogVisible, menuData, loading,menuIds} = useAmongMenuControl();
 
 
 /*
@@ -61,13 +63,10 @@ const onSubmit = () => {
       roleId: 1
    }
    amongMenuDto.menuIds = getCheckedKeys() as Array<number>;
-   console.log(amongMenuDto);
    amongMenu(amongMenuDto).then(res => {
       console.log(res);
    })
 }
-
-
 </script>
 
 <style scoped>
