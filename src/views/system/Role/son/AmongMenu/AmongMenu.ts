@@ -1,5 +1,9 @@
 import {ref} from "vue";
 
+/*
+ * ------------------------------------------------------------<-页面显示控制->----------------------------------------------------------------------------------
+ */
+
 const dialogVisible = ref(false);
 
 export function amongMenuOpen() {
@@ -16,3 +20,4 @@ export function useAmongMenuControl() {
       amongMenuClose
    }
 }
+
