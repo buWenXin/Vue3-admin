@@ -48,10 +48,11 @@ router.beforeEach(async (to: RouteLocationNormalized, from: RouteLocationNormali
       if (userStore.menu.length == 0) {
          try {
             let res = await userStore.getMenu();
+            console.log(res);
             userStore.registerRouter(router, res);
             return to.path;
          } catch (e) {
-            console.log("导航错误");
+            console.log("路由注册错误");
             return false;
          }
       }
