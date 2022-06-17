@@ -11,12 +11,13 @@ export function useMenuUpdateForm() {
       id: 0,
       componentPath: "",
       icon: "",
+      sortInt: 0,
       name: "",
       parentId: 0,
       perms: "",
       routerPath: "",
       status: 0,
-      type: 0
+      type: 1
    });
    /**
     * form表单验证规则

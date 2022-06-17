@@ -1,5 +1,5 @@
 <template>
-   <FormDialog :title="title" width="30%" v-model:dialog-visible="visible" :from-dto="formData" :submit-api="menuUpdate" :rules="rules" :get-data="getDate">
+   <FormDialog :title="title" width="33%" v-model:dialog-visible="visible" :from-dto="formData" :submit-api="menuUpdate" :rules="rules" :get-data="getDate">
       <template #content>
          <el-col :span="12">
             <el-form-item label="上级菜单">
@@ -45,13 +45,18 @@
                <el-input v-model="formData.routerPath"></el-input>
             </el-form-item>
          </el-col>
-         <el-col :span="24">
+         <el-col :span="12">
+            <el-form-item label="排序">
+               <el-input v-model="formData.sortInt"></el-input>
+            </el-form-item>
+         </el-col>
+         <el-col :span="12">
             <el-form-item label="权限标识">
                <el-input v-model="formData.perms"></el-input>
             </el-form-item>
          </el-col>
          <el-col :span="24">
-            <el-form-item label="组件路1径">
+            <el-form-item label="组件路径">
                <el-input v-model="formData.componentPath"></el-input>
             </el-form-item>
          </el-col>
