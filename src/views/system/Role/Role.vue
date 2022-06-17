@@ -34,6 +34,7 @@
          </template>
       </el-table-column>
    </TablePage>
+   <!--新增修改角色-->
    <UpdateRole ref="updateRoleRef" :get-data="getData"/>
    <!--分配菜单-->
    <AmongMenu ref="amongMenuRef" :get-data="getData"/>
@@ -41,11 +42,11 @@
 
 <script setup lang="ts">
 import {UseRolePage} from "@/views/system/Role/Role";
-import UpdateRole from "@/views/system/Role/son/UpdateRole/UpdateRole.vue";
+
 import type {RolePageVo} from "@/model/systemModel/roleModel";
 import {RoleTypeEnum} from "@/enum/systemEnum";
 import {EnumUtils} from "@/utils/Enum";
-import {useRoleOpen} from "@/views/system/Role/son/UpdateRole/UpdateRole";
+
 
 import AmongMenu from "@/views/system/Role/son/AmongMenu/AmongMenu.vue";
 import {ref} from "vue";
@@ -53,17 +54,20 @@ import {ref} from "vue";
 let {getData, handleRefresh, handleSearch, pageDto, tableData} = UseRolePage();
 getData();
 
-/**
- * 打开弹出层
+
+/*
+ * ------------------------------------------------------------<-新增/修改->----------------------------------------------------------------------------------
  */
-let {open} = useRoleOpen();
+import UpdateRole from "@/views/system/Role/son/UpdateRole/UpdateRole.vue";
 
+const updateRoleRef = ref<InstanceType<typeof UpdateRole>>(null);
+//新增角色
 const addClick = () => {
-   open();
+   updateRoleRef.value.open();
 }
-
+//修改角色
 const handleEdit = (row: RolePageVo) => {
-   open(row)
+   updateRoleRef.value.open(row);
 }
 
 const typeFormatter = (row: RolePageVo) => {

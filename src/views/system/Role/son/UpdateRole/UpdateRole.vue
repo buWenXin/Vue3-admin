@@ -37,18 +37,41 @@
 </template>
 
 <script lang="ts" setup>
-import {useRoleForm} from "@/views/system/Role/son/UpdateRole/UpdateRole";
 import {updateRole} from "@/api/system/roleApi";
 import {roleStatus} from "@/enum/systemEnum";
-
-console.log(roleStatus);
-
-let {roleUpdateDto, rules, title, visible} = useRoleForm();
+import {ref} from "vue";
+import {ObjectUtils} from "@/utils/ObjectUtils";
+import {useRoleFrom} from "@/views/system/Role/son/UpdateRole/UpdateRole";
 
 const props = defineProps<{
    getData(): void
 }>();
 
+//from数据
+let {initialData, roleUpdateDto, rules} = useRoleFrom();
+
+
+/*
+ * ------------------------------------------------------------<-页面控制->----------------------------------------------------------------------------------
+ */
+
+const visible = ref(false);
+const title = ref("新增");
+//打开事件
+const open = (row?: any) => {
+   if (row) {
+      title.value = "编辑"
+      ObjectUtils.DtoTo(row, roleUpdateDto);
+   } else {
+      title.value = "新增";
+      ObjectUtils.DtoTo(initialData, roleUpdateDto)
+   }
+   visible.value = true;
+};
+
+defineExpose({
+   open
+})
 
 </script>
 
