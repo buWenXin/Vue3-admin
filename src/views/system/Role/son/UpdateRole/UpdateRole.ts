@@ -22,6 +22,7 @@ export function useRoleFrom() {
          {required: true, message: '请输入角色权限名称', trigger: 'blur'},
       ]
    })
+
    //初始化的值
    const initialData = ObjectUtils.deepCopy(roleUpdateDto);
 
