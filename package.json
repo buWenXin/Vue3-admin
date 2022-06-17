@@ -10,7 +10,7 @@
   "dependencies": {
     "@element-plus/icons-vue": "^2.0.5",
     "@highlightjs/vue-plugin": "^2.1.0",
-    "@vueuse/core": "^8.6.0",
+    "@vueuse/core": "^8.7.3",
     "axios": "^0.27.2",
     "element-plus": "^2.2.5",
     "highlight.js": "^11.5.1",
