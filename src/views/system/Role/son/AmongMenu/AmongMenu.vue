@@ -7,9 +7,9 @@
             default-expand-all
             node-key="id"
             highlight-current
+            v-loading="loading"
             :default-checked-keys="menuIds"
             :props="defaultProps"/>
-
       <template #footer>
          <div class="dialog-footer">
             <el-button @click="close">关闭</el-button>
@@ -31,9 +31,9 @@ const props = defineProps<{
    //提交后，父页面刷新函数
    getData(): void
 }>();
-
+//获取菜单数据
 let {getMenuData, loading, menuData} = useGetMenuData();
-
+//获取已经分配的菜单ids
 let {getMenuIds, menuIds} = useGetMenuIds();
 
 
@@ -41,14 +41,15 @@ let {getMenuIds, menuIds} = useGetMenuIds();
  * ------------------------------------------------------------<-页面控制->----------------------------------------------------------------------------------
  */
 const dialogVisible = ref(false);
+let roleId: number = 0;
 
-
-const open = (roleId: number) => {
+//打开弹出层
+const open = (id: number) => {
+   roleId = id;
    dialogVisible.value = true;
    getMenuData();
-   getMenuIds(roleId);
+   getMenuIds(id);
 }
-
 //关闭
 const close = () => {
    dialogVisible.value = false;
@@ -77,10 +78,9 @@ const getCheckedKeys = () => {
 //提交事件,表单验证
 const onSubmit = () => {
    const amongMenuDto: AmongMenuDto = {
-      menuIds: [],
-      roleId: 1
+      menuIds: getCheckedKeys() as Array<number>,
+      roleId: roleId
    }
-   amongMenuDto.menuIds = getCheckedKeys() as Array<number>;
    amongMenu(amongMenuDto).then(res => {
       ElMessage.success("分配成功");
       close();
