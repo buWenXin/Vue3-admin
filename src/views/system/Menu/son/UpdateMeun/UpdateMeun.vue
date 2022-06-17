@@ -60,15 +60,50 @@
 </template>
 
 <script lang="ts" setup>
-import {useMenuFrom} from "@/views/system/Menu/son/UpdateMeun/UpdateMeun";
 import {MenuTypeEnum, StatusEnum} from "@/enum/systemEnum";
 import {menuUpdate} from "@/api/system/menuApi";
+import {ref} from "vue";
+import {ObjectUtils} from "@/utils/ObjectUtils";
+import {useMenuUpdateData, useMenuUpdateForm} from "@/views/system/Menu/son/UpdateMeun/UpdateMeun";
 
-
-let {formData, title, visible, rules, menuOfView} = useMenuFrom();
 const props = defineProps<{
    getDate(): void
 }>();
+
+/**
+ * 提交form
+ */
+let {formData, resetData, rules} = useMenuUpdateForm();
+/**
+ * 获取数据
+ */
+let {getMenuOfs, menuOfView} = useMenuUpdateData();
+
+
+/*
+ * ------------------------------------------------------------<-页面控制->----------------------------------------------------------------------------------
+ */
+const visible = ref(false);
+const title = ref("新增");
+
+/**
+ * 打开弹出层函数
+ */
+function open(row?: any) {
+   resetData();
+   if (row) {
+      title.value = "编辑菜单";
+      ObjectUtils.DtoTo(row, formData);
+   } else {
+      title.value = "新增菜单"
+   }
+   getMenuOfs();
+   visible.value = true;
+}
+
+defineExpose({
+   open
+})
 
 
 </script>

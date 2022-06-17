@@ -21,14 +21,13 @@
       </el-table-column>
    </el-table>
 
-   <UpdateMenu :get-date="getData"/>
+   <!--新增/修改菜单-->
+   <UpdateMenu ref="UpdateMenuRef" :get-date="getData"/>
 </template>
 
 <script setup lang="ts">
-
 import {ref} from "vue";
 import UpdateMenu from "@/views/system/Menu/son/UpdateMeun/UpdateMeun.vue";
-import {useMenuOpen} from "@/views/system/Menu/son/UpdateMeun/UpdateMeun";
 import {getMenuList} from "@/api/system/menuApi";
 import type {MenuInfoVo} from "@/model/systemModel/menuModel";
 
@@ -44,8 +43,6 @@ function getData() {
    })
 }
 
-let {open} = useMenuOpen();
-
 /**
  * 控制目录显示的颜色
  */
@@ -55,19 +52,24 @@ const rowStyle = (row: any) => {
          color: "#409EFF"
       }
    }
-
 }
+/*
+ * ------------------------------------------------------------<-新增/修改菜单->----------------------------------------------------------------------------------
+ */
+
+const UpdateMenuRef = ref<InstanceType<typeof UpdateMenu>>(null);
+
 /**
  * 添加菜单
  */
 const addClick = () => {
-   open();
+   UpdateMenuRef.value.open();
 }
 /**
  * 修改菜单
  */
 const handleEdit = (row: MenuInfoVo) => {
-   open(row);
+   UpdateMenuRef.value.open(row);
 }
 
 </script>
