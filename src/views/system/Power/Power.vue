@@ -31,7 +31,7 @@
       </el-table-column>
    </TablePage>
 
-   <PowerSave ref="powerSaveRef"></PowerSave>
+   <PowerSave :get-data="getData" ref="powerSaveRef"></PowerSave>
 
 </template>
 

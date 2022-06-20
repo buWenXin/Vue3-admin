@@ -1,9 +1,19 @@
 <template>
-   <FormDialog v-model:dialog-visible="controlView" width="23%" :title="title" :from-dto="powerSaveDto" :submit-api="savePower">
+   <FormDialog v-model:dialog-visible="controlView" width="23%" :title="title" :from-dto="powerSaveDto" :submit-api="savePower" :get-data="props.getData">
       <template #content>
          <el-col :span="24">
             <el-form-item label="所属页面">
-               <el-input/>
+               <el-input v-model="powerSaveDto.menuId"/>
+            </el-form-item>
+         </el-col>
+         <el-col :span="24">
+            <el-form-item label="权限描述">
+               <el-input v-model="powerSaveDto.powerDesc"/>
+            </el-form-item>
+         </el-col>
+         <el-col :span="24">
+            <el-form-item label="权限值">
+               <el-input v-model="powerSaveDto.powerKey"/>
             </el-form-item>
          </el-col>
       </template>
@@ -14,6 +24,11 @@
 import {ref} from "vue";
 import {usePowerFormDto} from "@/views/system/Power/son/PowerSave/PowerSave";
 import {savePower} from "@/api/system/powerApi";
+
+const props = defineProps<{
+   //提交后，父页面刷新函数
+   getData(): void
+}>();
 
 
 let {powerSaveDto, resetData} = usePowerFormDto();
