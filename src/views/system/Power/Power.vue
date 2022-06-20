@@ -6,6 +6,10 @@
       </SearchItem>
    </SearchPage>
 
+   <div class="page_edit">
+      <el-button type="primary" @click="createHandle">添加权限</el-button>
+   </div>
+
    <TablePage :get-date="getData"
               :table-list="tableData"
               :total="tableTotal"
@@ -20,17 +24,31 @@
       <el-table-column prop="createTime" label="创建时间" width="170" align='center'/>
       <el-table-column prop="updateBy" label="更新人" align='center'/>
       <el-table-column prop="updateTime" label="更新时间" width="170" align='center'/>
+      <el-table-column label="操作" width="130" align='center'>
+         <template v-slot:default="scope">
+            <el-button type="primary" size="small" @click="updateHandle(scope.row)">修改</el-button>
+         </template>
+      </el-table-column>
    </TablePage>
 
 </template>
 
 <script setup lang="ts">
 import {usePowerPageTable} from "@/views/system/Power/Power";
+import {PowerPageVo} from "@/model/systemModel/PowerModel";
 
 let {getData, tableLoading, powerPageDto, tableData, tableTotal, search, reset} = usePowerPageTable();
 getData();
 
+// 新增权限
+const createHandle = () => {
 
+}
+
+//修改
+const updateHandle = (row:PowerPageVo) => {
+
+}
 
 
 </script>
