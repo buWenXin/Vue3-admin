@@ -10,7 +10,7 @@ import {MenuInfoVo} from "@/model/systemModel/menuModel";
 const props = defineProps<{
    value: number
 }>();
-//v-model 绑定修改事件
+
 const emits = defineEmits<{
    (e: "update:value", n: number): void,
 }>();
@@ -21,7 +21,7 @@ const node = {
    children: 'children',
    label: 'name',
 }
-
+//获取数据
 getMenuList().then(res => {
    const menuInfoVo: MenuInfoVo = {
       children: [], componentPath: "", icon: "", id: 0, name: "主目录", parentId: 0, perms: "", routerPath: "", sortInt: 0, status: "", statusName: "", type: 0
@@ -30,13 +30,13 @@ getMenuList().then(res => {
    menuList.value.push(menuInfoVo)
 })
 
-
 /**
  * 选中时触发
  * @param row
  */
 const currentChange = (row: MenuInfoVo) => {
    if (row.type == 1) {
+      //修改触发事件，进行双向绑定
       emits("update:value", row.id)
    }
 }

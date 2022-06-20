@@ -3,7 +3,7 @@
       <template #content>
          <el-col :span="24">
             <el-form-item label="所属页面">
-               <el-input v-model="powerSaveDto.menuId"/>
+               <MenuSelect v-model:value="powerSaveDto.menuId"/>
             </el-form-item>
          </el-col>
          <el-col :span="24">
@@ -24,6 +24,9 @@
 import {ref} from "vue";
 import {usePowerFormDto} from "@/views/system/Power/son/PowerSave/PowerSave";
 import {savePower} from "@/api/system/powerApi";
+import MenuSelect from "@/views/system/Power/son/MenuSelect/MenuSelect.vue";
+import {PowerPageVo} from "@/model/systemModel/PowerModel";
+import {ObjectUtils} from "@/utils/ObjectUtils";
 
 const props = defineProps<{
    //提交后，父页面刷新函数
@@ -36,12 +39,13 @@ let {powerSaveDto, resetData} = usePowerFormDto();
 const controlView = ref(false);
 const title = ref("新增权限");
 
-const open = (id?: number) => {
+const open = (row?: PowerPageVo) => {
    resetData();
    controlView.value = true;
-   if (id) {
+   if (row) {
       //修改
       title.value = "修改";
+      ObjectUtils.DtoTo(row, powerSaveDto)
    } else {
       //新增
       title.value = "新增"

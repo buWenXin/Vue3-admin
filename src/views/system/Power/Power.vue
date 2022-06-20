@@ -1,7 +1,7 @@
 <template>
 
    <SearchPage :handle-search="search" :handle-refresh="reset">
-      <SearchItem :span="3" label="所属页面">
+      <SearchItem :span="4" label="所属页面">
          <MenuSelect v-model:value="powerPageDto.menuId"/>
       </SearchItem>
    </SearchPage>
@@ -54,7 +54,7 @@ const createHandle = () => {
 
 //修改
 const updateHandle = (row: PowerPageVo) => {
-   powerSaveRef.value.open(row.id);
+   powerSaveRef.value.open(row);
 }
 
 
