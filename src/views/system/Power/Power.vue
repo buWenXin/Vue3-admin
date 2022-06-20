@@ -1,8 +1,8 @@
 <template>
 
    <SearchPage :handle-search="search" :handle-refresh="reset">
-      <SearchItem :span="3" label="菜单id">
-         <el-input v-model="powerPageDto.menuId"/>
+      <SearchItem :span="3" label="所属页面">
+         <MenuSelect v-model:value="powerPageDto.menuId"/>
       </SearchItem>
    </SearchPage>
 
@@ -33,6 +33,7 @@
 
    <PowerSave :get-data="getData" ref="powerSaveRef"></PowerSave>
 
+
 </template>
 
 <script setup lang="ts">
@@ -40,6 +41,7 @@ import {usePowerPageTable} from "@/views/system/Power/Power";
 import {PowerPageVo} from "@/model/systemModel/PowerModel";
 import PowerSave from "@/views/system/Power/son/PowerSave/PowerSave.vue";
 import {ref} from "vue";
+import MenuSelect from "@/views/system/Power/son/MenuSelect/MenuSelect.vue";
 
 let {getData, tableLoading, powerPageDto, tableData, tableTotal, search, reset} = usePowerPageTable();
 getData();

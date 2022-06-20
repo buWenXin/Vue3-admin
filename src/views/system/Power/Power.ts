@@ -12,8 +12,7 @@ export function usePowerPageTable() {
       pageIndex: 1,
       pageSize: 10
    });
-   //重置dto对象
-   const reset = useResetData(powerPageDto);
+
 
    //table数据响应对象
    const tableData = ref<Array<PowerPageVo>>([]);
@@ -37,7 +36,12 @@ export function usePowerPageTable() {
       powerPageDto.pageIndex = 1;
       getData();
    }
-
+   //重置dto对象
+   const resetData = useResetData(powerPageDto);
+   const reset = () => {
+      resetData();
+      search();
+   }
 
 
    return {
