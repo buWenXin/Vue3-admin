@@ -31,23 +31,28 @@
       </el-table-column>
    </TablePage>
 
+   <PowerSave ref="powerSaveRef"></PowerSave>
+
 </template>
 
 <script setup lang="ts">
 import {usePowerPageTable} from "@/views/system/Power/Power";
 import {PowerPageVo} from "@/model/systemModel/PowerModel";
+import PowerSave from "@/views/system/Power/son/PowerSave/PowerSave.vue";
+import {ref} from "vue";
 
 let {getData, tableLoading, powerPageDto, tableData, tableTotal, search, reset} = usePowerPageTable();
 getData();
 
+const powerSaveRef = ref<InstanceType<typeof PowerSave>>(null);
 // 新增权限
 const createHandle = () => {
-
+   powerSaveRef.value.open();
 }
 
 //修改
-const updateHandle = (row:PowerPageVo) => {
-
+const updateHandle = (row: PowerPageVo) => {
+   powerSaveRef.value.open(row.id);
 }
 
 
