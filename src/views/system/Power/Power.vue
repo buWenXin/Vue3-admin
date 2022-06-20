@@ -1,12 +1,17 @@
 <template>
 
+   <SearchPage :handle-search="search" :handle-refresh="reset">
+      <SearchItem :span="3" label="菜单id">
+         <el-input v-model="powerPageDto.menuId"/>
+      </SearchItem>
+   </SearchPage>
 
    <TablePage :get-date="getData"
-              :page-index="pageDto.pageIndex"
-              :page-size="pageDto.pageSize"
-              :table-list="tableData.tableList"
-              :total="tableData.total"
-              :loading="tableData.loading"
+              :table-list="tableData"
+              :total="tableTotal"
+              :loading="tableLoading"
+              v-model:page-index="powerPageDto.pageIndex"
+              v-model:page-size="powerPageDto.pageSize"
    >
       <el-table-column prop="menuId" label="所属菜单" align='center'/>
       <el-table-column prop="powerDesc" label="权限描述" align='center'/>
@@ -20,10 +25,14 @@
 </template>
 
 <script setup lang="ts">
-import {usePowerPage} from "@/views/system/Power/Power";
+import {usePowerPageTable} from "@/views/system/Power/Power";
 
-let {getData, handleRefresh, handleSearch, pageDto, tableData} = usePowerPage();
+let {getData, tableLoading, powerPageDto, tableData, tableTotal, search, reset} = usePowerPageTable();
 getData();
+
+
+
+
 </script>
 
 <style scoped>

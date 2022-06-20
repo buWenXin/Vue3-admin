@@ -1,14 +1,58 @@
 import {PowerPageDto, PowerPageVo} from "@/model/systemModel/PowerModel";
-import {usePage} from "@/components/page/UsePage";
+
 import {getPowerPage} from "@/api/system/powerApi";
+import {reactive, ref} from "vue";
+import {useResetData} from "@/common/common";
 
 
-let powerPageDto: PowerPageDto = {
-   menuId: 0,
-   pageIndex: 1,
-   pageSize: 10
+export function usePowerPageTable() {
+   //table请求对象
+   const powerPageDto: PowerPageDto = reactive({
+      menuId: 0,
+      pageIndex: 1,
+      pageSize: 10
+   });
+   //重置dto对象
+   const reset = useResetData(powerPageDto);
+
+   //table数据响应对象
+   const tableData = ref<Array<PowerPageVo>>([]);
+
+   const tableLoading = ref(false);
+   const tableTotal = ref(0);
+
+   //获取table数据
+   const getData = () => {
+      tableLoading.value = true;
+      getPowerPage(powerPageDto).then(res => {
+         tableData.value = res.data.records;
+         tableTotal.value = res.data.total;
+      }).finally(() => {
+         tableLoading.value = false;
+      })
+   }
+
+   //搜索
+   const search = () => {
+      powerPageDto.pageIndex = 1;
+      getData();
+   }
+
+
+
+   return {
+      powerPageDto,
+      tableData,
+      tableLoading,
+      tableTotal,
+      getData,
+      search,
+      reset
+   }
+
 }
 
-export function usePowerPage() {
-   return usePage<PowerPageDto, PowerPageVo>(powerPageDto, getPowerPage);
-}
+
+
+
+

@@ -17,8 +17,8 @@
 import {Search, Refresh} from '@element-plus/icons-vue';
 
 const props = defineProps<{
-   handleSearch: Function;
-   handleRefresh: Function,
+   handleSearch(): void;
+   handleRefresh(): void,
 }>();
 
 
