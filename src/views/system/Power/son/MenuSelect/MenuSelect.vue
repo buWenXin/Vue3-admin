@@ -13,6 +13,7 @@ const props = defineProps<{
 
 const emits = defineEmits<{
    (e: "update:value", n: number): void,
+   (e: "selectHandle", n: MenuInfoVo): void,
 }>();
 
 const menuList = ref<Array<MenuInfoVo>>([]);
@@ -38,6 +39,7 @@ const currentChange = (row: MenuInfoVo) => {
    if (row.type == 1) {
       //修改触发事件，进行双向绑定
       emits("update:value", row.id)
+      emits("selectHandle", row);
    }
 }
 

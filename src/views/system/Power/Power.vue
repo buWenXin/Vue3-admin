@@ -17,7 +17,7 @@
               v-model:page-index="powerPageDto.pageIndex"
               v-model:page-size="powerPageDto.pageSize"
    >
-      <el-table-column prop="menuId" label="所属菜单" align='center'/>
+      <el-table-column prop="menuName" label="所属页面" align='center'/>
       <el-table-column prop="powerDesc" label="权限描述" align='center'/>
       <el-table-column prop="powerKey" label="权限值" align='center'/>
       <el-table-column prop="createBy" label="创建人" align='center'/>

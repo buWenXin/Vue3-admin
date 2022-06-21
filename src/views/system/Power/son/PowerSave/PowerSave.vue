@@ -4,7 +4,7 @@
       <template #content>
          <el-col :span="24">
             <el-form-item label="所属页面" prop="menuId">
-               <MenuSelect v-model:value="powerSaveDto.menuId"/>
+               <MenuSelect @selectHandle="selectHandle" v-model:value="powerSaveDto.menuId"/>
             </el-form-item>
          </el-col>
          <el-col :span="24">
@@ -28,6 +28,7 @@ import {savePower} from "@/api/system/powerApi";
 import MenuSelect from "@/views/system/Power/son/MenuSelect/MenuSelect.vue";
 import {PowerPageVo} from "@/model/systemModel/PowerModel";
 import {ObjectUtils} from "@/utils/ObjectUtils";
+import {MenuInfoVo} from "@/model/systemModel/menuModel";
 
 const props = defineProps<{
    //提交后，父页面刷新函数
@@ -51,6 +52,13 @@ const open = (row?: PowerPageVo) => {
       //新增
       title.value = "新增"
    }
+}
+/**
+ * 页面选择事件
+ */
+const selectHandle = (row: MenuInfoVo) => {
+
+   powerSaveDto.menuName = row.name;
 }
 
 

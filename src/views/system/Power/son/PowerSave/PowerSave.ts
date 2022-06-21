@@ -5,7 +5,7 @@ import {FormRules} from "element-plus/es";
 
 export function usePowerFormDto() {
    const powerSaveDto: PowerSaveDto = reactive({
-      id: 0, menuId: 0, powerDesc: "", powerKey: "", remake: ""
+      id: 0, menuId: 0, powerDesc: "", powerKey: "", remake: "", menuName: ""
    });
 
 
