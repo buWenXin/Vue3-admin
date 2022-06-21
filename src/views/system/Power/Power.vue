@@ -24,15 +24,15 @@
       <el-table-column prop="createTime" label="创建时间" width="170" align='center'/>
       <el-table-column prop="updateBy" label="更新人" align='center'/>
       <el-table-column prop="updateTime" label="更新时间" width="170" align='center'/>
-      <el-table-column label="操作" width="130" align='center'>
+      <el-table-column label="操作" width="150" align='center'>
          <template v-slot:default="scope">
             <el-button type="primary" size="small" @click="updateHandle(scope.row)">修改</el-button>
+            <el-button type="danger" size="small" @click="deleteHandle(scope.row)">删除</el-button>
          </template>
       </el-table-column>
    </TablePage>
 
    <PowerSave :get-data="getData" ref="powerSaveRef"></PowerSave>
-
 
 </template>
 
@@ -42,11 +42,14 @@ import {PowerPageVo} from "@/model/systemModel/PowerModel";
 import PowerSave from "@/views/system/Power/son/PowerSave/PowerSave.vue";
 import {ref} from "vue";
 import MenuSelect from "@/views/system/Power/son/MenuSelect/MenuSelect.vue";
+import {deletePower} from "@/api/system/powerApi";
+import {ElMessage, ElMessageBox} from "element-plus";
 
 let {getData, tableLoading, powerPageDto, tableData, tableTotal, search, reset} = usePowerPageTable();
 getData();
 
 const powerSaveRef = ref<InstanceType<typeof PowerSave>>(null);
+
 // 新增权限
 const createHandle = () => {
    powerSaveRef.value.open();
@@ -55,6 +58,22 @@ const createHandle = () => {
 //修改
 const updateHandle = (row: PowerPageVo) => {
    powerSaveRef.value.open(row);
+}
+
+//删除
+const deleteHandle = (row: PowerPageVo) => {
+
+   ElMessageBox.confirm('确定要删除吗?', '删除', {
+      type: "warning"
+   }).then(() => {
+      deletePower(row.id).then(res => {
+         ElMessage.success("删除成功")
+         getData();
+      }).catch(() => {
+         ElMessage.error("删除失败")
+      })
+   })
+
 }
 
 

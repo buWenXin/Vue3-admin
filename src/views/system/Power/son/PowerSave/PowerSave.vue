@@ -1,18 +1,19 @@
 <template>
-   <FormDialog v-model:dialog-visible="controlView" width="23%" :title="title" :from-dto="powerSaveDto" :submit-api="savePower" :get-data="props.getData">
+   <FormDialog v-model:dialog-visible="controlView" width="23%" :title="title" :from-dto="powerSaveDto" :submit-api="savePower" :get-data="props.getData"
+               :rules="rules">
       <template #content>
          <el-col :span="24">
-            <el-form-item label="所属页面">
+            <el-form-item label="所属页面" prop="menuId">
                <MenuSelect v-model:value="powerSaveDto.menuId"/>
             </el-form-item>
          </el-col>
          <el-col :span="24">
-            <el-form-item label="权限描述">
+            <el-form-item label="权限描述" prop="powerDesc">
                <el-input v-model="powerSaveDto.powerDesc"/>
             </el-form-item>
          </el-col>
          <el-col :span="24">
-            <el-form-item label="权限值">
+            <el-form-item label="权限值" prop="powerKey">
                <el-input v-model="powerSaveDto.powerKey"/>
             </el-form-item>
          </el-col>
@@ -34,7 +35,7 @@ const props = defineProps<{
 }>();
 
 
-let {powerSaveDto, resetData} = usePowerFormDto();
+let {powerSaveDto, resetData, rules} = usePowerFormDto();
 
 const controlView = ref(false);
 const title = ref("新增权限");
