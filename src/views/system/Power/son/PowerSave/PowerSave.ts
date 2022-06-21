@@ -1,8 +1,7 @@
-import {PowerPageVo, PowerSaveDto} from "@/model/systemModel/PowerModel";
+import { PowerSaveDto} from "@/model/systemModel/PowerModel";
 import {reactive, ref} from "vue";
 import {useResetData} from "@/common/common";
 import {FormRules} from "element-plus/es";
-import {ObjectUtils} from "@/utils/ObjectUtils";
 
 export function usePowerFormDto() {
    //from表单数据

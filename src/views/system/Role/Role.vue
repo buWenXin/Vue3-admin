@@ -38,6 +38,8 @@
    <UpdateRole ref="updateRoleRef" :get-data="getData"/>
    <!--分配菜单-->
    <AmongMenu ref="amongMenuRef" :get-data="getData"/>
+   <!--分配权限-->
+   <AmongPower ref="amongPowerRef" :get-data="getData"/>
 </template>
 
 <script setup lang="ts">
@@ -59,6 +61,7 @@ getData();
  * ------------------------------------------------------------<-新增/修改->----------------------------------------------------------------------------------
  */
 import UpdateRole from "@/views/system/Role/son/UpdateRole/UpdateRole.vue";
+import AmongPower from "@/views/system/Role/son/AmongPower/AmongPower.vue";
 
 const updateRoleRef = ref<InstanceType<typeof UpdateRole>>(null);
 //新增角色
@@ -79,6 +82,9 @@ const typeFormatter = (row: RolePageVo) => {
  */
 const amongMenuRef = ref<InstanceType<typeof AmongMenu>>(null);
 
+const amongPowerRef = ref<InstanceType<typeof AmongPower>>(null);
+
+
 //分配菜单
 const handleAmongMenu = (row: RolePageVo) => {
    amongMenuRef.value.open(row.id);
@@ -86,7 +92,7 @@ const handleAmongMenu = (row: RolePageVo) => {
 
 //分配权限
 const handleAmongPower = (row: RolePageVo) => {
-
+   amongPowerRef.value.open(row.id)
 }
 
 </script>
