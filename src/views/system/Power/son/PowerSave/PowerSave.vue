@@ -35,12 +35,12 @@ const props = defineProps<{
    getData(): void
 }>();
 
-
+//from表单数据
 let {powerSaveDto, resetData, rules} = usePowerFormDto();
 
 const controlView = ref(false);
 const title = ref("新增权限");
-
+//页面控制
 const open = (row?: PowerPageVo) => {
    resetData();
    controlView.value = true;
@@ -57,10 +57,8 @@ const open = (row?: PowerPageVo) => {
  * 页面选择事件
  */
 const selectHandle = (row: MenuInfoVo) => {
-
    powerSaveDto.menuName = row.name;
 }
-
 
 defineExpose({
    open

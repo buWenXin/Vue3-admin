@@ -1,13 +1,14 @@
-import {PowerSaveDto} from "@/model/systemModel/PowerModel";
-import {reactive} from "vue";
+import {PowerPageVo, PowerSaveDto} from "@/model/systemModel/PowerModel";
+import {reactive, ref} from "vue";
 import {useResetData} from "@/common/common";
 import {FormRules} from "element-plus/es";
+import {ObjectUtils} from "@/utils/ObjectUtils";
 
 export function usePowerFormDto() {
+   //from表单数据
    const powerSaveDto: PowerSaveDto = reactive({
       id: 0, menuId: 0, powerDesc: "", powerKey: "", remake: "", menuName: ""
    });
-
 
    //form表单验证:
    const rules = reactive<FormRules>({
@@ -23,6 +24,7 @@ export function usePowerFormDto() {
    })
 
    const resetData = useResetData(powerSaveDto);
+
 
    return {
       powerSaveDto,
