@@ -30,3 +30,9 @@ export function getMenuOf() {
     return Service.get<Array<MenuOfDto>>("/system/getMenuOf")
 }
 
+/**
+ * 获取角色下的页面权限
+ */
+export function queryPagePower(id:number) {
+   return Service.get<Array<MenuInfoVo>>("/system/queryPagePower",{id})
+}
