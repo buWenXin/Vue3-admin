@@ -26,24 +26,24 @@ const emits = defineEmits<{
 }>();
 
 //子组件选中的值
-const checkList = ref<Array<number>>([]);
+const checkList: number[] = []
 
 //监听子组件的事件,进行处理
 const changeList = (isAdd: boolean, list: Array<number>) => {
    //为真则添加,假则删除
    if (isAdd) {
-      checkList.value.push(...list);
+      checkList.push(...list);
    } else {
       list.forEach(item => {
-         let indexOf = checkList.value.indexOf(item);
-         checkList.value.splice(indexOf, 1)
+         let indexOf = checkList.indexOf(item);
+         checkList.splice(indexOf, 1)
       })
    }
    //将数据外抛
-   emits("datalist", checkList.value);
+   emits("datalist", checkList);
 }
 
-const datalist = (list:number[]) => {
+const datalist = (list: number[]) => {
    //将数据外抛
    emits("datalist", list);
 }

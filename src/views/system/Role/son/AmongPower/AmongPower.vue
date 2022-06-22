@@ -52,6 +52,7 @@ defineExpose({
 let formData: number[] = []
 const datalist = (list: number[]) => {
    formData = list;
+   console.log(formData);
 }
 
 const onSubmit = () => {
