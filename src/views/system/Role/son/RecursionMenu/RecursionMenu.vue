@@ -1,12 +1,13 @@
 <template>
 
+   <!-- type:0目录 1页面 2按钮权限-->
    <div v-for="item in data">
       <div class="title" v-if="item.type===0">{{ item.name }}</div>
       <div class="page" v-if="item.type===1">
          <CheckAll @changeList="changeList" :item="item"/>
       </div>
       <!--只有是目录,并且有children才进行递归-->
-      <RecursionMenu v-if="item.children&&item.type===0"  :data="item.children" :check-list="checkList"/>
+      <RecursionMenu v-if="item.children&&item.type===0" :data="item.children" :check-list="checkList"/>
    </div>
 
 </template>
@@ -16,8 +17,10 @@ import {MenuInfoVo} from "@/model/systemModel/menuModel";
 import CheckAll from "@/views/system/Role/son/RecursionMenu/CheckAll.vue";
 
 const props = defineProps<{
+   //递归渲染的数据
    data: Array<MenuInfoVo>,
    defaultData?: Array<number>,
+   //选中的值list
    checkList: number[]
 }>();
 
