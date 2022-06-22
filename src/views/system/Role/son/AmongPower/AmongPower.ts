@@ -11,6 +11,7 @@ export function useAmongPowerFormData() {
       loading.value = true;
       queryPagePower(id).then(res => {
          menuData.value = res.data;
+         console.log(res.data);
       }).finally(() => {
          loading.value = false;
       })

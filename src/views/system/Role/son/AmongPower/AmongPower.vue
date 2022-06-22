@@ -1,14 +1,7 @@
 <template>
    <el-dialog v-model="dialogVisible" title="菜单权限" width="30%" :destroy-on-close="true" :close-on-click-modal="false">
-      <el-tree
-            ref="treeRef"
-            :data="menuData"
-            show-checkbox
-            default-expand-all
-            node-key="id"
-            highlight-current
-            v-loading="loading"
-            :props="defaultProps"/>
+
+      <RecursionMenu :data="menuData"/>
       <template #footer>
          <div class="dialog-footer">
             <el-button @click="close">关闭</el-button>
@@ -25,6 +18,7 @@ import {ElMessage, ElTree} from "element-plus";
 import {AmongMenuDto} from "@/model/systemModel/roleModel";
 import {amongMenu} from "@/api/system/roleApi";
 import {useAmongPowerFormData} from "@/views/system/Role/son/AmongPower/AmongPower";
+import RecursionMenu from "@/views/system/Role/son/RecursionMenu/RecursionMenu.vue";
 
 const props = defineProps<{
    //提交后，父页面刷新函数
