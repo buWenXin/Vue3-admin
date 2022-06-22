@@ -1,10 +1,12 @@
 <template>
    <div>
       <el-checkbox
+            v-if="item.children.length>0"
             v-model="checkAll"
             :indeterminate="isIndeterminate"
             @change="handleCheckAllChange"> {{ item.name }}
       </el-checkbox>
+      <div v-else>{{ item.name }}</div>
       <div>
          <el-checkbox-group v-model="checkList" @change="handleCheckedCitiesChange">
             <el-checkbox v-for="it in item.children" :label="it.id">{{ it.name }}</el-checkbox>
@@ -18,7 +20,9 @@ import {MenuInfoVo} from "@/model/systemModel/menuModel";
 import {ref, watch} from "vue";
 
 const props = defineProps<{
-   item: MenuInfoVo
+   item: MenuInfoVo,
+   //默认选中的值
+   defaultList: Array<number>,
 }>();
 
 
@@ -27,6 +31,7 @@ const emits = defineEmits<{
    (e: "changeList", is: boolean, n: Array<number>): void,
 }>();
 
+//选中的list
 const checkList = ref<Array<number>>([]);
 
 /*
@@ -34,21 +39,29 @@ const checkList = ref<Array<number>>([]);
  */
 //全选的值
 const allList: Array<number> = []
-props.item.children.forEach(item => {
-   allList.push(item.id)
-})
 //全选按钮控制
 const checkAll = ref(false)
 //办选中样式
 const isIndeterminate = ref(false)
+props.item.children.forEach(item => {
+   allList.push(item.id)
+   //设置默认值
+   if (props.defaultList.includes(item.id)) {
+      //将默认值添加到选中列表中去
+      checkList.value.push(item.id);
+   }
+})
+
+handleCheckedCitiesChange(checkList.value);
 
 //全选按钮选中事件
 const handleCheckAllChange = (val: boolean) => {
    checkList.value = val ? allList : []
    isIndeterminate.value = false
 }
+
 //多选点击事件
-const handleCheckedCitiesChange = (value: number[]) => {
+function handleCheckedCitiesChange(value: number[]) {
    const checkedCount = value.length
    checkAll.value = checkedCount === allList.length
    isIndeterminate.value = checkedCount > 0 && checkedCount < allList.length
@@ -73,16 +86,13 @@ watch(checkList, (newVal: Array<number>, oldVal: Array<number>) => {
    //判断是添加还是删除
    if (newValue.length > 0) {
       console.log("添加:" + newValue);
-      //告诉上面,需要添加什么,或者删除什么
       emits("changeList", true, newValue)
    } else {
       console.log("删除:" + oldValue);
       emits("changeList", false, oldValue)
    }
 })
-/*
- * ------------------------------------------------------------<-父组件回调->----------------------------------------------------------------------------------
- */
+
 
 </script>
 

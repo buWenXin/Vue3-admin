@@ -1,7 +1,7 @@
 <template>
    <el-dialog v-model="dialogVisible" title="菜单权限" width="30%" :destroy-on-close="true" :close-on-click-modal="false">
 
-      <RecursionMenu :data="menuData" :default-data="arrlist" :check-list="checkList"/>
+      <RecursionMenu :data="menuData" :check-list="checkList" :default-list="defaultList"/>
       <template #footer>
          <div class="dialog-footer">
             <el-button @click="close">关闭</el-button>
@@ -17,7 +17,6 @@ import {ref} from "vue";
 import {useAmongPowerFormData} from "@/views/system/Role/son/AmongPower/AmongPower";
 import RecursionMenu from "@/views/system/Role/son/RecursionMenu/RecursionMenu.vue";
 
-let arrlist: number[] = [2, 3, 12]
 
 const props = defineProps<{
    //提交后，父页面刷新函数
@@ -28,6 +27,8 @@ let {getMenuData, loading, menuData} = useAmongPowerFormData();
 
 //选中的值
 const checkList: number[] = []
+//默认选中的值
+const defaultList: number[] = [2, 3, 4];
 
 /*
  * ------------------------------------------------------------<-页面控制->----------------------------------------------------------------------------------
