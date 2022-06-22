@@ -47,8 +47,11 @@ defineExpose({
    open
 })
 
+
+//选中值触发事件
+let formData: number[] = []
 const datalist = (list: number[]) => {
-   console.log(list);
+   formData = list;
 }
 
 const onSubmit = () => {

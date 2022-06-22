@@ -25,7 +25,7 @@ const emits = defineEmits<{
    (e: "datalist", n: Array<number>): void,
 }>();
 
-
+//子组件选中的值
 const checkList = ref<Array<number>>([]);
 
 //监听子组件的事件,进行处理
