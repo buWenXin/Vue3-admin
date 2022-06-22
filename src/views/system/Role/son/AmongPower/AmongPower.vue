@@ -1,7 +1,7 @@
 <template>
    <el-dialog v-model="dialogVisible" title="菜单权限" width="30%" :destroy-on-close="true" :close-on-click-modal="false">
 
-      <RecursionMenu :data="menuData"/>
+      <RecursionMenu :data="menuData" :default-data="arrlist" @change="powerChange"/>
       <template #footer>
          <div class="dialog-footer">
             <el-button @click="close">关闭</el-button>
@@ -19,6 +19,8 @@ import {AmongMenuDto} from "@/model/systemModel/roleModel";
 import {amongMenu} from "@/api/system/roleApi";
 import {useAmongPowerFormData} from "@/views/system/Role/son/AmongPower/AmongPower";
 import RecursionMenu from "@/views/system/Role/son/RecursionMenu/RecursionMenu.vue";
+
+let arrlist: number[] = [2, 3, 12]
 
 const props = defineProps<{
    //提交后，父页面刷新函数
@@ -47,36 +49,15 @@ const close = () => {
 defineExpose({
    open
 })
-/*
- * ------------------------------------------------------------<-树形组件->----------------------------------------------------------------------------------
- */
-const defaultProps = {
-   children: 'children',
-   label: 'name',
-}
-const treeRef = ref<InstanceType<typeof ElTree>>()
 
-const getCheckedKeys = () => {
-   return treeRef.value!.getCheckedKeys(false)
+const powerChange = (list: number[]) => {
+   console.log(list);
 }
 
-
-/*
- * ------------------------------------------------------------<-表单提交处理->----------------------------------------------------------------------------------
- */
-
-//提交事件,表单验证
 const onSubmit = () => {
-   const amongMenuDto: AmongMenuDto = {
-      menuIds: getCheckedKeys() as Array<number>,
-      roleId: roleId
-   }
-   amongMenu(amongMenuDto).then(res => {
-      ElMessage.success("分配成功");
-      close();
-      props.getData();
-   })
+
 }
+
 </script>
 
 <style scoped>

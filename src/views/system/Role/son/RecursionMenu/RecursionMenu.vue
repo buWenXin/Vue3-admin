@@ -17,22 +17,30 @@ import CheckAll from "@/views/system/Role/son/RecursionMenu/CheckAll.vue";
 import {ref} from "vue";
 
 const props = defineProps<{
-   data: Array<MenuInfoVo>
+   data: Array<MenuInfoVo>,
+   defaultData?: Array<number>
 }>();
+
+const emits = defineEmits<{
+   (e: "change", n: Array<number>): void,
+}>();
+
 
 const checkList = ref<Array<number>>([]);
 
-const changeList = (isAdd: boolean, data: Array<number>) => {
+//监听子组件的事件,进行处理
+const changeList = (isAdd: boolean, list: Array<number>) => {
    //为真则添加,假则删除
    if (isAdd) {
-      checkList.value.push(...data);
+      checkList.value.push(...list);
    } else {
-      data.forEach(item => {
+      list.forEach(item => {
          let indexOf = checkList.value.indexOf(item);
          checkList.value.splice(indexOf, 1)
       })
    }
-
+   //将数据外抛
+   emits("change", checkList.value);
 }
 
 
