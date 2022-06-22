@@ -1,7 +1,7 @@
 <template>
    <el-dialog v-model="dialogVisible" title="菜单权限" width="30%" :destroy-on-close="true" :close-on-click-modal="false">
 
-      <RecursionMenu :data="menuData" :default-data="arrlist" @change="powerChange"/>
+      <RecursionMenu :data="menuData" :default-data="arrlist" @datalist="datalist"/>
       <template #footer>
          <div class="dialog-footer">
             <el-button @click="close">关闭</el-button>
@@ -11,12 +11,9 @@
    </el-dialog>
 </template>
 
+
 <script setup lang="ts">
 import {ref} from "vue";
-
-import {ElMessage, ElTree} from "element-plus";
-import {AmongMenuDto} from "@/model/systemModel/roleModel";
-import {amongMenu} from "@/api/system/roleApi";
 import {useAmongPowerFormData} from "@/views/system/Role/son/AmongPower/AmongPower";
 import RecursionMenu from "@/views/system/Role/son/RecursionMenu/RecursionMenu.vue";
 
@@ -50,7 +47,7 @@ defineExpose({
    open
 })
 
-const powerChange = (list: number[]) => {
+const datalist = (list: number[]) => {
    console.log(list);
 }
 

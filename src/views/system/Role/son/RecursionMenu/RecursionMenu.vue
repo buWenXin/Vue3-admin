@@ -6,7 +6,7 @@
          <CheckAll @changeList="changeList" :item="item"/>
       </div>
       <!--只有是目录,并且有children才进行递归-->
-      <RecursionMenu v-if="item.children&&item.type===0" :data="item.children"/>
+      <RecursionMenu v-if="item.children&&item.type===0" @datalist="datalist" :data="item.children"/>
    </div>
 
 </template>
@@ -22,7 +22,7 @@ const props = defineProps<{
 }>();
 
 const emits = defineEmits<{
-   (e: "change", n: Array<number>): void,
+   (e: "datalist", n: Array<number>): void,
 }>();
 
 
@@ -40,7 +40,12 @@ const changeList = (isAdd: boolean, list: Array<number>) => {
       })
    }
    //将数据外抛
-   emits("change", checkList.value);
+   emits("datalist", checkList.value);
+}
+
+const datalist = (list:number[]) => {
+   //将数据外抛
+   emits("datalist", list);
 }
 
 
