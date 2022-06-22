@@ -39,7 +39,8 @@ props.item.children.forEach(item => {
 })
 //全选按钮控制
 const checkAll = ref(false)
-const isIndeterminate = ref(true)
+//办选中样式
+const isIndeterminate = ref(false)
 
 //全选按钮选中事件
 const handleCheckAllChange = (val: boolean) => {
@@ -47,7 +48,7 @@ const handleCheckAllChange = (val: boolean) => {
    isIndeterminate.value = false
 }
 //多选点击事件
-const handleCheckedCitiesChange = (value: string[]) => {
+const handleCheckedCitiesChange = (value: number[]) => {
    const checkedCount = value.length
    checkAll.value = checkedCount === allList.length
    isIndeterminate.value = checkedCount > 0 && checkedCount < allList.length
@@ -66,14 +67,10 @@ watch(checkList, (newVal: Array<number>, oldVal: Array<number>) => {
    const oldValue = [...oldVal];
    //相同的抵消
    repach.forEach(item => {
-      let number = newValue.indexOf(item);
-      newValue.splice(number, 1);
-
-      let indexOf = oldValue.indexOf(item);
-      oldValue.splice(indexOf, 1)
-
+      newValue.splice(newValue.indexOf(item), 1);
+      oldValue.splice(oldValue.indexOf(item), 1)
    })
-
+   //判断是添加还是删除
    if (newValue.length > 0) {
       console.log("添加:" + newValue);
       //告诉上面,需要添加什么,或者删除什么
