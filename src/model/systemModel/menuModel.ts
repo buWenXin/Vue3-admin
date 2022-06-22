@@ -10,7 +10,8 @@ export interface MenuInfoVo {
    perms: string,
    icon: string,
    statusName: string,
-   children: Array<MenuInfoVo>
+   children: Array<MenuInfoVo>,
+   // changeList?: number[]
 }
 
 export interface MenuUpdateDto {
