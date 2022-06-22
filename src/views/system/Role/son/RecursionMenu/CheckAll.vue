@@ -52,7 +52,8 @@ props.item.children.forEach(item => {
    }
 })
 
-handleCheckedCitiesChange(checkList.value);
+
+
 
 //全选按钮选中事件
 const handleCheckAllChange = (val: boolean) => {
