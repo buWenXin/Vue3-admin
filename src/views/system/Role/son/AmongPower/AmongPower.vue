@@ -1,7 +1,7 @@
 <template>
    <el-dialog v-model="dialogVisible" title="菜单权限" width="30%" :destroy-on-close="true" :close-on-click-modal="false">
 
-      <RecursionMenu :data="menuData" :default-data="arrlist" @datalist="datalist"/>
+      <RecursionMenu :data="menuData" :default-data="arrlist" :check-list="checkList"/>
       <template #footer>
          <div class="dialog-footer">
             <el-button @click="close">关闭</el-button>
@@ -26,6 +26,9 @@ const props = defineProps<{
 //获取菜单数据
 let {getMenuData, loading, menuData} = useAmongPowerFormData();
 
+//选中的值
+const checkList: number[] = []
+
 /*
  * ------------------------------------------------------------<-页面控制->----------------------------------------------------------------------------------
  */
@@ -47,16 +50,9 @@ defineExpose({
    open
 })
 
-
-//选中值触发事件
-let formData: number[] = []
-const datalist = (list: number[]) => {
-   formData = list;
-   console.log(formData);
-}
-
+//提交事件
 const onSubmit = () => {
-
+   console.log(checkList);
 }
 
 </script>

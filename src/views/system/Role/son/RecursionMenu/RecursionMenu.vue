@@ -6,7 +6,7 @@
          <CheckAll @changeList="changeList" :item="item"/>
       </div>
       <!--只有是目录,并且有children才进行递归-->
-      <RecursionMenu v-if="item.children&&item.type===0" @datalist="datalist" :data="item.children"/>
+      <RecursionMenu v-if="item.children&&item.type===0"  :data="item.children" :check-list="checkList"/>
    </div>
 
 </template>
@@ -14,40 +14,26 @@
 <script setup lang="ts">
 import {MenuInfoVo} from "@/model/systemModel/menuModel";
 import CheckAll from "@/views/system/Role/son/RecursionMenu/CheckAll.vue";
-import {ref} from "vue";
 
 const props = defineProps<{
    data: Array<MenuInfoVo>,
-   defaultData?: Array<number>
+   defaultData?: Array<number>,
+   checkList: number[]
 }>();
-
-const emits = defineEmits<{
-   (e: "datalist", n: Array<number>): void,
-}>();
-
-//子组件选中的值
-const checkList: number[] = []
 
 //监听子组件的事件,进行处理
 const changeList = (isAdd: boolean, list: Array<number>) => {
    //为真则添加,假则删除
    if (isAdd) {
-      checkList.push(...list);
+      props.checkList.push(...list);
    } else {
       list.forEach(item => {
-         let indexOf = checkList.indexOf(item);
-         checkList.splice(indexOf, 1)
+         let indexOf = props.checkList.indexOf(item);
+         props.checkList.splice(indexOf, 1)
       })
    }
-   //将数据外抛
-   emits("datalist", checkList);
-}
 
-const datalist = (list: number[]) => {
-   //将数据外抛
-   emits("datalist", list);
 }
-
 
 </script>
 
