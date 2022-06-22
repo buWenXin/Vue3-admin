@@ -84,17 +84,6 @@ watch(checkList, (newVal: Array<number>, oldVal: Array<number>) => {
  * ------------------------------------------------------------<-父组件回调->----------------------------------------------------------------------------------
  */
 
-const defaultData = (val: Array<number>) => {
-   val.forEach(item => {
-
-   })
-}
-
-defineExpose({
-   defaultData
-})
-
-
 </script>
 
 <style scoped>
