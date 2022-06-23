@@ -23,8 +23,6 @@ const props = defineProps<{
    item: MenuInfoVo,
 }>();
 
-const inject1 = inject<Ref<number[]>>("defaultList");
-
 
 const emits = defineEmits<{
    (e: "changeList", is: boolean, n: Array<number>): void,
@@ -87,11 +85,13 @@ watch(checkList, (newVal: Array<number>, oldVal: Array<number>) => {
 /*
  * ------------------------------------------------------------<-默认选中处理->----------------------------------------------------------------------------------
  */
+//获取默认勾选数据
+const defaultList = inject<Ref<number[]>>("defaultList");
 //默认选中的值
 const kind: number[] = [];
 allList.forEach(item => {
-   console.log(inject1?.value);
-   if (inject1?.value.includes(item)) {
+   console.log(defaultList?.value);
+   if (defaultList?.value.includes(item)) {
       kind.push(item)
    }
 })

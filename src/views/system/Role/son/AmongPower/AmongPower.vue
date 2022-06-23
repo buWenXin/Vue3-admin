@@ -29,13 +29,11 @@ let {getMenuData, loading, menuData} = useAmongPowerFormData();
 /*
  * ------------------------------------------------------------<-页面控制->----------------------------------------------------------------------------------
  */
-//默认选中的值
-// const defaultList: number[] = []
-
+//默认选中数据
 const defaultList = ref<number[]>([])
-
+//子组件供给数据
 provide<Ref<number[]>>("defaultList", defaultList)
-
+//显示控制
 const dialogVisible = ref(false);
 
 //提交的dto
@@ -46,13 +44,13 @@ const fromData: AmongPowerDto = {
 
 //打开弹出层
 const open = (id: number) => {
-   dialogVisible.value = true;
    getMenuData(id);
    fromData.roleId = id;
    fromData.powerId = [];
-   //数据恢复默认值
+   //获取数据的默认值
    getRolePowers(id).then(res => {
       defaultList.value = res.data;
+      dialogVisible.value = true;
    })
 }
 
