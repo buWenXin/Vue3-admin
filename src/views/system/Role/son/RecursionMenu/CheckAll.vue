@@ -25,25 +25,24 @@ const props = defineProps<{
    defaultList: Array<number>,
 }>();
 
-
-//v-model 绑定修改事件
 const emits = defineEmits<{
    (e: "changeList", is: boolean, n: Array<number>): void,
 }>();
 
-//选中的list
-const checkList = ref<Array<number>>([]);
 
 /*
  * ------------------------------------------------------------<-全选->----------------------------------------------------------------------------------
  */
+//选中的list
+const checkList = ref<Array<number>>([]);
 //全选的值
 const allList: Array<number> = []
 //全选按钮控制
 const checkAll = ref(false);
-//办选中样式
+//选中样式
 const isIndeterminate = ref(false)
 
+//添加全选的list集合
 props.item.children.forEach(item => {
    allList.push(item.id)
 })
@@ -55,13 +54,12 @@ const handleCheckAllChange = (val: boolean) => {
    isIndeterminate.value = false
 }
 
-//多选点击事件
+//多选值变化触发事件
 function handleCheckedCitiesChange(value: number[]) {
    const checkedCount = value.length
    checkAll.value = checkedCount === allList.length
    isIndeterminate.value = checkedCount > 0 && checkedCount < allList.length
 }
-
 
 //监听checkList变化,告诉父组件要添加还是删除
 watch(checkList, (newVal: Array<number>, oldVal: Array<number>) => {
@@ -80,10 +78,8 @@ watch(checkList, (newVal: Array<number>, oldVal: Array<number>) => {
    })
    //判断是添加还是删除
    if (newValue.length > 0) {
-      console.log("添加:" + newValue);
       emits("changeList", true, newValue)
    } else {
-      console.log("删除:" + oldValue);
       emits("changeList", false, oldValue)
    }
 })
