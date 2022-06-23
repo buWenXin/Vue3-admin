@@ -1,7 +1,7 @@
 /**
  * 角色-分页查询
  */
-import type {AmongMenuDto, RolePageDto, RolePageVo, RoleUpdateDto} from "@/model/systemModel/roleModel";
+import type {AmongMenuDto, AmongPowerDto, RolePageDto, RolePageVo, RoleUpdateDto} from "@/model/systemModel/roleModel";
 import type {ResponsePageData} from "@/utils/request";
 import {Service} from "@/utils/request";
 
@@ -29,4 +29,18 @@ export function amongMenu(amongMenuDto: AmongMenuDto) {
  */
 export function getRoleMenus(roleid: number) {
    return Service.get<Array<number>>("/system/getRoleMenus", {roleid});
+}
+
+/**
+ * 角色-分配权限
+ */
+export function assignPower(data: AmongPowerDto) {
+   return Service.post<null>("/system/assignPower", data);
+}
+
+/**
+ * 角色-获取角色拥有的按钮权限
+ */
+export function getRolePowers(roleId: number) {
+   return Service.get<Array<number>>("/system/getRolePowers", {roleId});
 }

@@ -71,3 +71,9 @@ export interface AmongMenuDto {
    menuIds: Array<number>,
    roleId: number
 }
+
+
+export interface AmongPowerDto {
+   roleId: number,
+   powerId: Array<number>,
+}

@@ -1,6 +1,6 @@
 <template>
    <el-dialog v-model="dialogVisible" title="菜单权限" width="30%" :destroy-on-close="true" :close-on-click-modal="false">
-      <RecursionMenu :data="menuData" :check-list="checkList" :default-list="defaultList"/>
+      <RecursionMenu :data="menuData" :check-list="fromData.powerId" :default-list="defaultList"/>
       <template #footer>
          <div class="dialog-footer">
             <el-button @click="close">关闭</el-button>
@@ -15,6 +15,8 @@
 import {ref} from "vue";
 import {useAmongPowerFormData} from "@/views/system/Role/son/AmongPower/AmongPower";
 import RecursionMenu from "@/views/system/Role/son/RecursionMenu/RecursionMenu.vue";
+import {assignPower, getRolePowers} from "@/api/system/roleApi";
+import {AmongPowerDto} from "@/model/systemModel/roleModel";
 
 
 const props = defineProps<{
@@ -24,8 +26,7 @@ const props = defineProps<{
 //获取菜单数据
 let {getMenuData, loading, menuData} = useAmongPowerFormData();
 
-//选中的值
-const checkList: number[] = []
+
 //默认选中的值
 const defaultList: number[] = [];
 
@@ -34,12 +35,25 @@ const defaultList: number[] = [];
  */
 const dialogVisible = ref(false);
 let roleId: number = 0;
+//提交的dto
+const fromData: AmongPowerDto = {
+   powerId: [],
+   roleId: 0
+}
 
 //打开弹出层
 const open = (id: number) => {
    dialogVisible.value = true;
    roleId = id;
    getMenuData(id);
+   fromData.roleId = id;
+   fromData.powerId = [];
+   //数据恢复默认值
+   defaultList.length = 0
+   getRolePowers(id).then(res => {
+      defaultList.push(...res.data)
+      console.log(defaultList);
+   })
 }
 
 //关闭
@@ -49,8 +63,12 @@ const close = () => {
 
 //提交事件
 const onSubmit = () => {
-   console.log(checkList);
+   assignPower(fromData).then(res => {
+      close();
+      props.getData();
+   })
 }
+
 
 defineExpose({
    open
