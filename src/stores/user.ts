@@ -18,7 +18,8 @@ export const useUserStore = defineStore({
    //使用箭头函数，可以完整使用类型推断
    state: () => {
       return {
-         menu: [] as Array<MenuInfoVo>
+         menu: [] as Array<MenuInfoVo>,
+         powerKeys: [] as Array<string>
       }
    },
    actions: {

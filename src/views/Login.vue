@@ -41,6 +41,7 @@ import type {AuthCodeVo, LoginDto} from "@/model/systemModel/LoginApiModel";
 import type {FormInstance, FormRules} from "element-plus";
 import {MyCache} from "@/utils/MyCache";
 import {useRouter} from "vue-router";
+import {useUserStore} from "@/stores/user";
 
 const router = useRouter();
 
@@ -69,6 +70,10 @@ const rules = reactive<FormRules>({
 })
 //from的ref对象
 const ruleFormRef = ref<FormInstance>()
+
+const userStore = useUserStore();
+
+
 //提交事件,表单验证
 const onSubmit = () => {
    ruleFormRef.value?.validate((valid) => {
@@ -76,7 +81,10 @@ const onSubmit = () => {
          login(loginDto).then(res => {
             MyCache.setItem("token", res.data.token);
             MyCache.setItem("userinfo", res.data.userinfo);
-            MyCache.setItem("powerKeys",res.data.powerKeys);
+            MyCache.setItem("powerKeys", res.data.powerKeys);
+            //存储到pinia
+            userStore.$state.powerKeys = res.data.powerKeys;
+            
             //如果选择记住密码，则在登录后存储密码到本地
             storageAuth();
             router.push("/home/index");

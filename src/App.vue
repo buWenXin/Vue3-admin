@@ -13,7 +13,18 @@
 <script lang="ts" setup>
 import zhCn from 'element-plus/lib/locale/lang/zh-cn'
 import {ref} from "vue";
+import {MyCache} from "@/utils/MyCache";
+import {useUserStore} from "@/stores/user";
+
 const size = ref("default");
+
+const item = MyCache.getItem<Array<string>>("powerKeys");
+
+
+const userStore = useUserStore();
+if(item){
+   userStore.$state.powerKeys = item;
+}
 
 </script>
 
