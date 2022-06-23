@@ -18,7 +18,6 @@ import RecursionMenu from "@/views/system/Role/son/RecursionMenu/RecursionMenu.v
 import {assignPower, getRolePowers} from "@/api/system/roleApi";
 import {AmongPowerDto} from "@/model/systemModel/roleModel";
 
-
 const props = defineProps<{
    //提交后，父页面刷新函数
    getData(): void
@@ -27,13 +26,13 @@ const props = defineProps<{
 let {getMenuData, loading, menuData} = useAmongPowerFormData();
 
 
-//默认选中的值
-const defaultList = ref<number[]>([]);
 /*
  * ------------------------------------------------------------<-页面控制->----------------------------------------------------------------------------------
  */
+//默认选中的值
+const defaultList = ref<number[]>([]);
 const dialogVisible = ref(false);
-let roleId: number = 0;
+
 //提交的dto
 const fromData: AmongPowerDto = {
    powerId: [],
@@ -43,7 +42,6 @@ const fromData: AmongPowerDto = {
 //打开弹出层
 const open = (id: number) => {
    dialogVisible.value = true;
-   roleId = id;
    getMenuData(id);
    fromData.roleId = id;
    fromData.powerId = [];
