@@ -28,7 +28,7 @@ let {getMenuData, loading, menuData} = useAmongPowerFormData();
 //选中的值
 const checkList: number[] = []
 //默认选中的值
-const defaultList: number[] = [2, 3, 4];
+const defaultList: number[] = [2, 3, 4, 5];
 
 /*
  * ------------------------------------------------------------<-页面控制->----------------------------------------------------------------------------------

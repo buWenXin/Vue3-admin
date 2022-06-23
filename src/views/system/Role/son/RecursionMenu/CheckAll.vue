@@ -21,7 +21,7 @@ import {ref, watch} from "vue";
 
 const props = defineProps<{
    item: MenuInfoVo,
-   //默认选中的值
+   //默认选中的list
    defaultList: Array<number>,
 }>();
 
@@ -40,19 +40,13 @@ const checkList = ref<Array<number>>([]);
 //全选的值
 const allList: Array<number> = []
 //全选按钮控制
-const checkAll = ref(false)
+const checkAll = ref(false);
 //办选中样式
 const isIndeterminate = ref(false)
+
 props.item.children.forEach(item => {
    allList.push(item.id)
-   //设置默认值
-   if (props.defaultList.includes(item.id)) {
-      //将默认值添加到选中列表中去
-      checkList.value.push(item.id);
-   }
 })
-
-
 
 
 //全选按钮选中事件
@@ -93,6 +87,24 @@ watch(checkList, (newVal: Array<number>, oldVal: Array<number>) => {
       emits("changeList", false, oldValue)
    }
 })
+/*
+ * ------------------------------------------------------------<-默认选中处理->----------------------------------------------------------------------------------
+ */
+//默认选中的值
+const kind: number[] = [];
+allList.forEach(item => {
+   //如果在默认选中列表里面,则添加
+   if (props.defaultList.includes(item)) {
+      kind.push(item);
+   }
+})
+checkList.value = kind;
+//判断处理样式
+if (kind.length == allList.length) {
+   checkAll.value = true;
+} else if (kind.length > 0) {
+   isIndeterminate.value = true;
+}
 
 
 </script>
