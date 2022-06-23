@@ -28,8 +28,7 @@ let {getMenuData, loading, menuData} = useAmongPowerFormData();
 
 
 //默认选中的值
-const defaultList: number[] = [];
-
+const defaultList = ref<number[]>([]);
 /*
  * ------------------------------------------------------------<-页面控制->----------------------------------------------------------------------------------
  */
@@ -49,10 +48,8 @@ const open = (id: number) => {
    fromData.roleId = id;
    fromData.powerId = [];
    //数据恢复默认值
-   defaultList.length = 0
    getRolePowers(id).then(res => {
-      defaultList.push(...res.data)
-      console.log(defaultList);
+      defaultList.value = res.data;
    })
 }
 
