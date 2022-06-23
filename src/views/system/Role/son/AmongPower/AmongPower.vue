@@ -1,6 +1,5 @@
 <template>
    <el-dialog v-model="dialogVisible" title="菜单权限" width="30%" :destroy-on-close="true" :close-on-click-modal="false">
-
       <RecursionMenu :data="menuData" :check-list="checkList" :default-list="defaultList"/>
       <template #footer>
          <div class="dialog-footer">
@@ -28,7 +27,7 @@ let {getMenuData, loading, menuData} = useAmongPowerFormData();
 //选中的值
 const checkList: number[] = []
 //默认选中的值
-const defaultList: number[] = [2, 3, 4, 5];
+const defaultList: number[] = [];
 
 /*
  * ------------------------------------------------------------<-页面控制->----------------------------------------------------------------------------------
@@ -38,24 +37,24 @@ let roleId: number = 0;
 
 //打开弹出层
 const open = (id: number) => {
-   roleId = id;
    dialogVisible.value = true;
+   roleId = id;
    getMenuData(id);
-
 }
+
 //关闭
 const close = () => {
    dialogVisible.value = false;
 }
-defineExpose({
-   open
-})
 
 //提交事件
 const onSubmit = () => {
    console.log(checkList);
 }
 
+defineExpose({
+   open
+})
 </script>
 
 <style scoped>

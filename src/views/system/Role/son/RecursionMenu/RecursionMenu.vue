@@ -26,7 +26,7 @@ const props = defineProps<{
 }>();
 
 
-//监听子组件的事件,进行处理
+//监听子组件勾选的事件,进行处理
 const changeList = (isAdd: boolean, list: Array<number>) => {
    //为真则添加,假则删除
    if (isAdd) {
@@ -37,7 +37,6 @@ const changeList = (isAdd: boolean, list: Array<number>) => {
          props.checkList.splice(indexOf, 1)
       })
    }
-
 }
 
 </script>
