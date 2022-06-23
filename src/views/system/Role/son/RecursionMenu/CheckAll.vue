@@ -17,13 +17,14 @@
 
 <script setup lang="ts">
 import {MenuInfoVo} from "@/model/systemModel/menuModel";
-import {ref, watch} from "vue";
+import {inject, Ref, ref, watch} from "vue";
 
 const props = defineProps<{
    item: MenuInfoVo,
-   //默认选中的list
-   defaultList: Array<number>,
 }>();
+
+const inject1 = inject<Ref<number[]>>("defaultList");
+
 
 const emits = defineEmits<{
    (e: "changeList", is: boolean, n: Array<number>): void,
@@ -89,9 +90,9 @@ watch(checkList, (newVal: Array<number>, oldVal: Array<number>) => {
 //默认选中的值
 const kind: number[] = [];
 allList.forEach(item => {
-   //如果在默认选中列表里面,则添加
-   if (props.defaultList.includes(item)) {
-      kind.push(item);
+   console.log(inject1?.value);
+   if (inject1?.value.includes(item)) {
+      kind.push(item)
    }
 })
 checkList.value = kind;

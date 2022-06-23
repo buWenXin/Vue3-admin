@@ -1,6 +1,6 @@
 <template>
    <el-dialog v-model="dialogVisible" title="菜单权限" width="30%" :destroy-on-close="true" :close-on-click-modal="false">
-      <RecursionMenu :data="menuData" :check-list="fromData.powerId" :default-list="defaultList"/>
+      <RecursionMenu :data="menuData" :check-list="fromData.powerId"/>
       <template #footer>
          <div class="dialog-footer">
             <el-button @click="close">关闭</el-button>
@@ -12,7 +12,7 @@
 
 
 <script setup lang="ts">
-import {ref} from "vue";
+import {provide, Ref, ref} from "vue";
 import {useAmongPowerFormData} from "@/views/system/Role/son/AmongPower/AmongPower";
 import RecursionMenu from "@/views/system/Role/son/RecursionMenu/RecursionMenu.vue";
 import {assignPower, getRolePowers} from "@/api/system/roleApi";
@@ -30,7 +30,12 @@ let {getMenuData, loading, menuData} = useAmongPowerFormData();
  * ------------------------------------------------------------<-页面控制->----------------------------------------------------------------------------------
  */
 //默认选中的值
-const defaultList = ref<number[]>([]);
+// const defaultList: number[] = []
+
+const defaultList = ref<number[]>([])
+
+provide<Ref<number[]>>("defaultList", defaultList)
+
 const dialogVisible = ref(false);
 
 //提交的dto
