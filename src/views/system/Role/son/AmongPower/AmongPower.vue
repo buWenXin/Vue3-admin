@@ -44,9 +44,10 @@ const fromData: AmongPowerDto = {
 
 //打开弹出层
 const open = (id: number) => {
-   getMenuData(id);
    fromData.roleId = id;
    fromData.powerId = [];
+   //用户角色已分配菜单
+   getMenuData(id);
    //获取数据的默认值
    getRolePowers(id).then(res => {
       defaultList.value = res.data;

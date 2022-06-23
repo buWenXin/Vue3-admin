@@ -41,6 +41,8 @@ function handleSignOut() {
       type: "warning"
    }).then(() => {
       MyCache.removeItem("token");
+      MyCache.removeItem("powerKeys");
+      MyCache.removeItem("userinfo");
       router.push("/login")
    })
 }

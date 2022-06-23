@@ -1,4 +1,4 @@
-type keys = "token" | "userinfo" | "auth";
+type keys = "token" | "userinfo" | "auth"|"powerKeys";
 
 /**
  * 本地缓存工具类/
