@@ -5,6 +5,7 @@ import type {Router} from "vue-router";
 import type {MenuInfoVo} from "@/model/systemModel/menuModel";
 import {getMenu} from "@/api/system/menuApi";
 import {getUserPermissions} from "@/api/system/loginApi";
+import {useRouter} from "vue-router";
 
 
 // import {Router, useRoute, useRouter} from "vue-router";
@@ -17,16 +18,14 @@ const modules = import.meta.glob('../views/**/*.vue')
 export const useUserStore = defineStore({
    id: "user",
    //使用箭头函数，可以完整使用类型推断
-   state: () => {
-      return {
-         menu: [] as Array<MenuInfoVo>,
-         powerKeys: [] as Array<string>
-      }
-   },
+   state: () => ({
+      menu: [] as Array<MenuInfoVo>,
+      powerKeys: [] as Array<string>
+   }),
    actions: {
       async getUserPermission(): Promise<Array<MenuInfoVo>> {
-         // let data = await getMenu();
-         const data = await  getUserPermissions();
+         //获取权限
+         const data = await getUserPermissions();
          if (data.data) {
             //拼接父路径
             SplicingPath(data.data.menus);

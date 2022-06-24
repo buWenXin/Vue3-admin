@@ -1,4 +1,4 @@
-import {createRouter, createWebHistory} from 'vue-router'
+import {createRouter, createWebHistory, useRouter} from 'vue-router'
 import type {RouteLocationNormalized} from "vue-router";
 
 import {MyCache} from "@/utils/MyCache";
@@ -44,6 +44,7 @@ NProgress.configure({showSpinner: false});
 
 
 
+
 router.beforeEach(async (to: RouteLocationNormalized, from: RouteLocationNormalized) => {
    //开启进度条
    NProgress.start();
@@ -59,7 +60,7 @@ router.beforeEach(async (to: RouteLocationNormalized, from: RouteLocationNormali
       if (userStore.menu.length == 0) {
          try {
             let res = await userStore.getUserPermission();
-            console.log(res);
+            //注册动态路由
             userStore.registerRouter(router, res);
             return to.path;
          } catch (e) {
