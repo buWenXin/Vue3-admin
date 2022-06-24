@@ -90,7 +90,6 @@ const defaultList = inject<Ref<number[]>>("defaultList");
 //默认选中的值
 const kind: number[] = [];
 allList.forEach(item => {
-   console.log(defaultList?.value);
    if (defaultList?.value.includes(item)) {
       kind.push(item)
    }
