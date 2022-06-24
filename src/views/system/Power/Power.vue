@@ -7,7 +7,7 @@
    </SearchPage>
 
    <div class="page_edit">
-      <el-button  v-permission="['add']" type="primary" @click="createHandle">添加权限</el-button>
+      <el-button  v-permission="'system:user:create1'" type="primary" @click="createHandle">添加权限</el-button>
    </div>
 
    <TablePage :get-date="getData"
