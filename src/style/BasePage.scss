@@ -37,3 +37,23 @@ $page-table-padding: 10px;
   }
 }
 
+
+//--------------------------------------------颜色--------------------------
+
+.color_primary{
+  color: var(--el-color-primary) !important;
+}
+.color_success{
+  color: var(--el-color-success) !important;
+}
+
+.color_success{
+  color: var(--el-color-success) !important;
+}
+.color_warning{
+  color: var(--el-color-warning) !important;
+}
+
+.color_danger{
+  color: var(--el-color-danger) !important;
+}
