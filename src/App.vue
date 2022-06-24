@@ -14,9 +14,6 @@ import {useUserStore} from "@/stores/user";
 
 const size = ref("default");
 
-
-
-
 const item = MyCache.getItem<Array<string>>("powerKeys");
 const userStore = useUserStore();
 if (item) {
