@@ -30,7 +30,7 @@
       <el-table-column width="150px" align='center' label="操作">
          <template v-slot:default="scope">
             <DropdownList title="操作菜单">
-               <el-dropdown-item class="color_primary">分配角色</el-dropdown-item>
+               <el-dropdown-item class="color_primary" @click="handleassignedRoleRef">分配角色</el-dropdown-item>
                <el-dropdown-item class="color_primary" @click="handleEdit(scope.row)">修改</el-dropdown-item>
                <el-dropdown-item class="color_primary" @click="logss(scope.row)">查看</el-dropdown-item>
                <el-dropdown-item class="color_danger" @click="logss(scope.row)">删除</el-dropdown-item>
@@ -38,8 +38,10 @@
          </template>
       </el-table-column>
    </TablePage>
-
+   <!--新增/修改用户-->
    <UpdateUser ref="updateUser" :get-data="getData"/>
+
+   <AssignedRole ref="assignedRoleRef"/>
 </template>
 
 <script setup lang="ts">
@@ -48,6 +50,8 @@ import UpdateUser from "@/views/system/User/son/UpdateUser.vue";
 import {useUserOpen} from "@/views/system/User/son/UpdateUser";
 import type {UserPageVo} from "@/model/systemModel/userModel";
 import SearchPage from "@/components/page/SearchPage/SearchPage.vue";
+import AssignedRole from "@/views/system/User/son/AssignedRole.vue";
+import {ref} from "vue";
 
 
 //页面use
@@ -58,7 +62,7 @@ function logss(row: UserPageVo) {
    console.log(row);
 }
 
-
+//用户新增/修改
 let {open} = useUserOpen();
 
 function openDialog() {
@@ -68,6 +72,14 @@ function openDialog() {
 function handleEdit(row: UserPageVo) {
    open(row);
 }
+
+//分配角色
+const assignedRoleRef = ref<InstanceType<typeof AssignedRole>>(null);
+
+const handleassignedRoleRef = () => {
+   assignedRoleRef.value.open();
+}
+
 
 </script>
 
