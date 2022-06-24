@@ -1,11 +1,7 @@
 <template>
    <el-config-provider :locale="zhCn" :size="size">
       <div class="home_app">
-         <router-view v-slot="{ Component }">
-            <transition>
-               <component :is="Component"/>
-            </transition>
-         </router-view>
+         <RouterView/>
       </div>
    </el-config-provider>
 </template>
@@ -18,11 +14,12 @@ import {useUserStore} from "@/stores/user";
 
 const size = ref("default");
 
+
+
+
 const item = MyCache.getItem<Array<string>>("powerKeys");
-
-
 const userStore = useUserStore();
-if(item){
+if (item) {
    userStore.$state.powerKeys = item;
 }
 
