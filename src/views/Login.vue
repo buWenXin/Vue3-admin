@@ -81,10 +81,6 @@ const onSubmit = () => {
          login(loginDto).then(res => {
             MyCache.setItem("token", res.data.token);
             MyCache.setItem("userinfo", res.data.userinfo);
-            MyCache.setItem("powerKeys", res.data.powerKeys);
-            //存储到pinia
-            userStore.$state.powerKeys = res.data.powerKeys;
-            
             //如果选择记住密码，则在登录后存储密码到本地
             storageAuth();
             router.push("/home/index");

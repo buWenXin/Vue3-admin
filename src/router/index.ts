@@ -58,7 +58,7 @@ router.beforeEach(async (to: RouteLocationNormalized, from: RouteLocationNormali
       //判断是否已经注册动态路由，页面刷新后，注册的路由也会丢失，也会进入判断注册路由
       if (userStore.menu.length == 0) {
          try {
-            let res = await userStore.getMenu();
+            let res = await userStore.getUserPermission();
             console.log(res);
             userStore.registerRouter(router, res);
             return to.path;

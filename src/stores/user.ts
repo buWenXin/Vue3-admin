@@ -4,6 +4,7 @@ import {defineStore} from 'pinia'
 import type {Router} from "vue-router";
 import type {MenuInfoVo} from "@/model/systemModel/menuModel";
 import {getMenu} from "@/api/system/menuApi";
+import {getUserPermissions} from "@/api/system/loginApi";
 
 
 // import {Router, useRoute, useRouter} from "vue-router";
@@ -23,14 +24,16 @@ export const useUserStore = defineStore({
       }
    },
    actions: {
-      async getMenu(): Promise<Array<MenuInfoVo>> {
-         let data = await getMenu();
-         if (data) {
+      async getUserPermission(): Promise<Array<MenuInfoVo>> {
+         // let data = await getMenu();
+         const data = await  getUserPermissions();
+         if (data.data) {
             //拼接父路径
-            SplicingPath(data.data);
+            SplicingPath(data.data.menus);
             //将拼接完成的对象，存储都store中
-            this.menu = data.data;
-            return Promise.resolve(data.data)
+            this.menu = data.data.menus;
+            this.powerKeys = data.data.powers;
+            return Promise.resolve(data.data.menus)
          }
          return Promise.reject();
       },
