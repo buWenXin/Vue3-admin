@@ -8,7 +8,7 @@ export default {
       //在插件中注册了一个自定义指令
       app.directive("permission", {
          mounted(el: HTMLElement, bing: DirectiveBinding) {
-            // parentNode
+            // 如果权限list里面没有找到该权限字符串，则将元素删除。
             if(!userStore.$state.powerKeys.includes(bing.value)){
                el.parentNode?.removeChild(el);
             }
