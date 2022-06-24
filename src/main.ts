@@ -13,6 +13,7 @@ const app = createApp(App)
 import 'element-plus/theme-chalk/dark/css-vars.css';
 import 'element-plus/dist/index.css'
 import "@/style/BasePage.scss"
+import 'nprogress/nprogress.css'//进度条样式
 //注册icon
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
@@ -22,8 +23,6 @@ app.use(createPinia())
 app.use(router);
 //注册权限控制
 app.use(permission)
-
-
 
 
 app.mount('#app')

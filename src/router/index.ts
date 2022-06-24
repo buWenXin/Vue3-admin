@@ -35,7 +35,17 @@ const router = createRouter({
 
 export default router;
 
+
+//引入nprogress 进度条插件
+import NProgress from 'nprogress'
+
+//设置进度条
+NProgress.configure({showSpinner: false});
+
+
 router.beforeEach(async (to: RouteLocationNormalized, from: RouteLocationNormalized) => {
+   //开启进度条
+   NProgress.start();
    let token = MyCache.getItem<string>("token");
    //判断是否登录
    if (token) {
@@ -62,5 +72,12 @@ router.beforeEach(async (to: RouteLocationNormalized, from: RouteLocationNormali
          return "/login"
       }
    }
+});
+
+//全局后置钩子
+router.afterEach(() => {
+   //关闭进度条
+   NProgress.done();
 })
+
 
