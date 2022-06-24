@@ -27,8 +27,9 @@
       <el-table-column prop="createTime" label="创建时间" width="170" align='center'/>
       <el-table-column prop="updateBy" label="更新人" align='center'/>
       <el-table-column prop="updateTime" label="更新时间" width="170" align='center'/>
-      <el-table-column width="220px" align='center' label="操作">
+      <el-table-column width="330px" align='center' label="操作">
          <template v-slot:default="scope">
+            <el-button type="primary" size="small" @click="handleEdit(scope.row)">分配角色</el-button>
             <el-button type="primary" size="small" @click="handleEdit(scope.row)">修改</el-button>
             <el-button type="success" size="small" @click="logss(scope.row)">查看</el-button>
             <el-button type="danger" size="small" @click="logss(scope.row)">删除</el-button>
