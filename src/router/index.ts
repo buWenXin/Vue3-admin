@@ -43,6 +43,7 @@ import NProgress from 'nprogress'
 NProgress.configure({showSpinner: false});
 
 
+
 router.beforeEach(async (to: RouteLocationNormalized, from: RouteLocationNormalized) => {
    //开启进度条
    NProgress.start();
