@@ -8,6 +8,7 @@
             </el-icon>
             <div>退出</div>
          </div>
+
          <div class="icon_item" @click="handleSetUp">
             <el-icon :size="20" style="margin-right: 3px">
                <tools/>
@@ -61,7 +62,7 @@ const handleSetUp = () => {
    display: flex;
    width: 100%;
    box-sizing: border-box;
-   padding: 0 10px;
+   background-color: #ffffff;
 }
 
 .left_nav {
@@ -69,19 +70,18 @@ const handleSetUp = () => {
 }
 
 .right_setup{
-   /*background: #EFF7FF;*/
    width: 30%;
    display: flex;
    align-items: center;
    box-sizing: border-box;
    flex-direction: row-reverse;
-   padding-right: 10px;
 }
 
 .icon_item {
    display: flex;
    cursor: pointer;
-   padding-right: 20px;
+   /*padding-right: 20px;*/
+   padding-left: 20px;
 }
 
 .icon_item:hover {

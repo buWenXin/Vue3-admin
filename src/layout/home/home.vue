@@ -49,7 +49,7 @@ import MainHeader from "@/layout/MainHeader/MainHeader.vue";
 
 .main_header {
    height: var(--main-header);
-   background-color: #fff;
+   padding: 0 10px;
 }
 
 .main_page {
