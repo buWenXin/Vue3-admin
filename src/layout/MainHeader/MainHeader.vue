@@ -1,6 +1,10 @@
 <template>
    <div class="main_header">
-      <div class="left_nav">左边面包屑</div>
+      <el-breadcrumb separator="/" class="left_nav">
+         <el-breadcrumb-item :to="{ path: '/' }">homepage</el-breadcrumb-item>
+         <el-breadcrumb-item :to="{ path: '/' }">homepage</el-breadcrumb-item>
+      </el-breadcrumb>
+
       <div class="right_setup">
          <div class="icon_item" @click="handleSignOut">
             <el-icon :size="20" style="margin-right: 3px">
@@ -8,7 +12,6 @@
             </el-icon>
             <div>退出</div>
          </div>
-
          <div class="icon_item" @click="handleSetUp">
             <el-icon :size="20" style="margin-right: 3px">
                <tools/>
@@ -28,7 +31,7 @@
 
 <script setup lang="ts">
 import {ElMessageBox} from 'element-plus';
-import {useRouter} from "vue-router";
+import {useRoute, useRouter} from "vue-router";
 import {ref} from "vue";
 import type SystemSetup from "@/layout/MainHeader/son/SystemSetup.vue";
 import {MyCache} from "@/utils/MyCache";
@@ -38,6 +41,8 @@ const systemSetup = ref<InstanceType<typeof SystemSetup> | null>(null);
 
 const router = useRouter();
 
+const route = useRoute();
+console.log(route);
 
 function handleSignOut() {
    ElMessageBox.confirm('确定要退出登录吗?', '退出', {
@@ -67,9 +72,13 @@ const handleSetUp = () => {
 
 .left_nav {
    width: 70%;
+   display: flex;
+   align-items: center;
+   white-space: nowrap;
+   overflow-y: auto;
 }
 
-.right_setup{
+.right_setup {
    width: 30%;
    display: flex;
    align-items: center;
