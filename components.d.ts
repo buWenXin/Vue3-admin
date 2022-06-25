@@ -32,6 +32,7 @@ declare module '@vue/runtime-core' {
     ElTreeSelect: typeof import('element-plus/es')['ElTreeSelect']
     FooterPage: typeof import('./src/components/page/FooterPage/FooterPage.vue')['default']
     FormDialog: typeof import('./src/components/FormDialog/FormDialog.vue')['default']
+    FormDto: typeof import('./src/components/FormDialog/FormDto.vue')['default']
     Highlight: typeof import('./src/components/Highlight/highlight.vue')['default']
     Loading: typeof import('element-plus/es')['ElLoadingDirective']
     MyRadio: typeof import('./src/components/Radio/MyRadio.vue')['default']
