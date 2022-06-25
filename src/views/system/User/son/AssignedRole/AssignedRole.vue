@@ -43,7 +43,6 @@ const open = (userId: number) => {
    usegetRoleAll().then(res => {
       roleData.value = res.data.records;
    })
-
 };
 
 

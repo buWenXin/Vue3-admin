@@ -50,7 +50,7 @@ import UpdateUser from "@/views/system/User/son/UpdateUser.vue";
 import {useUserOpen} from "@/views/system/User/son/UpdateUser";
 import type {UserPageVo} from "@/model/systemModel/userModel";
 import SearchPage from "@/components/page/SearchPage/SearchPage.vue";
-import AssignedRole from "@/views/system/User/son/AssignedRole.vue";
+import AssignedRole from "@/views/system/User/son/AssignedRole/AssignedRole.vue";
 import {ref} from "vue";
 
 
