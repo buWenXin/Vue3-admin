@@ -31,17 +31,23 @@ const props = defineProps<{
    dialogVisible: boolean,
    //表单验证规则
    rules?: any,
+   //表单提交的dto对象
    fromDto: any,
    //表单提交函数
    submitApi(): Promise<ResponseData<any>>,
-   //提交后，父页面刷新函数
-   getData(): void
+}>();
+
+//自定义事件
+const emits = defineEmits<{
+   (e: "update:dialogVisible", is: boolean): void,
+   //表单提交成功后的回调
+   (e: "success"): void,
 }>();
 
 /**
  * ------------------------------------------------------------<-表单提交处理->----------------------------------------------------------------------------------
  */
-
+//提交loading
 const loading = ref(false);
 
 //from的ref对象
@@ -55,7 +61,7 @@ const onSubmit = () => {
             props.submitApi().then(res => {
                ElMessage.success(res.msg);
                close();
-               props.getData();
+               emits("success");
             }).finally(() => {
                loading.value = false
             })
@@ -66,20 +72,18 @@ const onSubmit = () => {
       props.submitApi().then(res => {
          ElMessage.success(res.msg);
          close();
-         props.getData();
+         emits("success");
       }).finally(() => {
          loading.value = false
       })
    }
 }
 
+
 /**
  * ------------------------------------------------------------<-关闭页面处理->----------------------------------------------------------------------------------
  */
-//自定义事件
-const emits = defineEmits<{
-   (e: "update:dialogVisible", is: boolean): void
-}>();
+
 
 //监听关闭的回调
 function onClose() {

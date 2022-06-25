@@ -1,5 +1,5 @@
 <template>
-   <FormDto title="分配角色" v-model:dialog-visible="controlView" width="30%" :submit-api="submitForm" :get-data="getData" :from-dto="formData">
+   <FormDto title="分配角色" v-model:dialog-visible="controlView" width="30%" :submit-api="submitForm" :from-dto="formData" @success="submitSuccess">
       <el-checkbox-group v-model="formData.roleId">
          <el-checkbox v-for="item in roleData" :label="item.id">{{ item.name }}</el-checkbox>
       </el-checkbox-group>
@@ -11,7 +11,6 @@ import {ref} from "vue";
 import {getUserAllocationRole} from "@/api/system/userAPi";
 import {useShowData, useSubmitForm} from "@/views/system/User/son/AssignedRole/AssignedRole";
 import FormDto from "@/components/FormDialog/FormDto.vue";
-
 
 const props = defineProps<{
    getData(): void
@@ -35,6 +34,11 @@ const open = (userId: number) => {
    });
    getShowData();
 };
+
+//表单提交成功后回调
+const submitSuccess = () => {
+   console.log("表单提交成功");
+}
 
 
 defineExpose({
