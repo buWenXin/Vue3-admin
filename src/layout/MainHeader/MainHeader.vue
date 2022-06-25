@@ -1,9 +1,31 @@
 <template>
    <div class="main_header">
-      <el-breadcrumb separator="/" class="left_nav">
-         <el-breadcrumb-item :to="{ path: '/' }">homepage</el-breadcrumb-item>
-         <el-breadcrumb-item :to="{ path: '/' }">homepage</el-breadcrumb-item>
-      </el-breadcrumb>
+      <div class="left_nav">
+         <div class="left_nav_item left_nav_item_active">
+            <div>标题</div>
+            <el-icon :size="14" class="nav_icon">
+               <Close/>
+            </el-icon>
+         </div>
+         <div class="left_nav_item">
+            <div>标题</div>
+            <el-icon :size="14" class="nav_icon">
+               <Close/>
+            </el-icon>
+         </div>
+         <div class="left_nav_item ">
+            <div>标题</div>
+            <el-icon :size="14" class="nav_icon">
+               <Close/>
+            </el-icon>
+         </div>
+         <div class="left_nav_item">
+            <div>标题</div>
+            <el-icon :size="14" class="nav_icon">
+               <Close/>
+            </el-icon>
+         </div>
+      </div>
 
       <div class="right_setup">
          <div class="icon_item" @click="handleSignOut">
@@ -62,7 +84,7 @@ const handleSetUp = () => {
 
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .main_header {
    display: flex;
    width: 100%;
@@ -76,6 +98,27 @@ const handleSetUp = () => {
    align-items: center;
    white-space: nowrap;
    overflow-y: auto;
+
+   .left_nav_item {
+      display: flex;
+      align-items: center;
+      height: 100%;;
+      padding: 0 15px;
+
+      .nav_icon {
+         margin-left: 5px;
+         cursor: pointer;
+
+         &:hover {
+            background-color: #7aa2f7;
+            color: #fff;
+         }
+      }
+   }
+
+   .left_nav_item_active {
+      background-color: #F5F7FA;
+   }
 }
 
 .right_setup {
