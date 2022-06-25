@@ -1,6 +1,6 @@
 <template>
    <div>
-      <el-menu :default-active="$route.path" unique-opened style="height: 100vh" background-color="#fff">
+      <el-menu :default-active="$route.path" unique-opened style="height: 100vh" background-color="#EFF7FF">
          <div class="sidebar_title">
 <!--            <img height="60" src="../../assets/logo1.png"/>-->
             {{title}}
