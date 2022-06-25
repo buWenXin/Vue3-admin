@@ -16,14 +16,13 @@ const props = defineProps<{
    getData(): void
 }>();
 
-const controlView = ref(false);
-
 //获取展示数据
 let {getShowData, roleData} = useShowData();
 
 //提交表单use
 let {formData, submitForm} = useSubmitForm();
 
+const controlView = ref(false);
 //打开页面
 const open = (userId: number) => {
    controlView.value = true;
@@ -32,6 +31,7 @@ const open = (userId: number) => {
    getUserAllocationRole(userId).then(res => {
       formData.roleId = res.data;
    });
+   //获取需要的数据
    getShowData();
 };
 
