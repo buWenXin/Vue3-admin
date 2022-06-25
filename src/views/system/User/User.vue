@@ -41,7 +41,7 @@
    <!--新增/修改用户-->
    <UpdateUser ref="updateUser" :get-data="getData"/>
 
-   <AssignedRole ref="assignedRoleRef"/>
+   <AssignedRole ref="assignedRoleRef" :get-data="getData"/>
 </template>
 
 <script setup lang="ts">
@@ -61,6 +61,7 @@ getData();
 function logss(row: UserPageVo) {
    console.log(row);
 }
+
 
 //用户新增/修改
 let {open} = useUserOpen();

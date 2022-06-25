@@ -1,6 +1,5 @@
 <template>
-
-   <FormDto title="分配角色" v-model:dialog-visible="controlView" width="30%" :submit-api="submitForm" :get-data="getData" :from-dto="FormDto">
+   <FormDto title="分配角色" v-model:dialog-visible="controlView" width="30%" :submit-api="submitForm" :get-data="getData" :from-dto="formData">
       <el-checkbox-group v-model="formData.roleId">
          <el-checkbox v-for="item in roleData" :label="item.id">{{ item.name }}</el-checkbox>
       </el-checkbox-group>
