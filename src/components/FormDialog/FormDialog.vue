@@ -49,18 +49,29 @@ const loading = ref(false);
 const ruleFormRef = ref<FormInstance>()
 //提交事件,表单验证
 const onSubmit = () => {
-   ruleFormRef.value?.validate((valid) => {
-      if (valid) {
-         loading.value = true;
-         props.submitApi(props.fromDto).then(res => {
-            ElMessage.success(res.msg);
-            close();
-            props.getData();
-         }).finally(() => {
-            loading.value = false
-         })
-      }
-   })
+   if (props.rules) {
+      ruleFormRef.value?.validate((valid) => {
+         if (valid) {
+            loading.value = true;
+            props.submitApi(props.fromDto).then(res => {
+               ElMessage.success(res.msg);
+               close();
+               props.getData();
+            }).finally(() => {
+               loading.value = false
+            })
+         }
+      })
+   } else {
+      loading.value = true;
+      props.submitApi(props.fromDto).then(res => {
+         ElMessage.success(res.msg);
+         close();
+         props.getData();
+      }).finally(() => {
+         loading.value = false
+      })
+   }
 }
 
 /**

@@ -31,6 +31,6 @@ export function getUserAllocationRole(userId: number) {
  * 为用户分配角色
  */
 export function allocationRole(dto: AllocationRoleDto) {
-   Service.post<string>("/system/allocationRole", dto)
+   return Service.post<string>("/system/allocationRole", dto);
 }
 
