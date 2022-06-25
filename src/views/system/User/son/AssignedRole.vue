@@ -1,5 +1,5 @@
 <template>
-   <FormDialog title="分配角色" width="30%" v-model:dialog-visible="controlView" :get-data="getData" :submit-api="allocationRole">
+   <FormDialog title="分配角色" width="30%" v-model:dialog-visible="controlView" :get-data="getData" :submit-api="allocationRole" :from-dto="formData">
       <template #content>
          <el-checkbox-group v-model="formData.roleId">
             <el-checkbox v-for="item in roleData" :label="item.id">{{ item.name }}</el-checkbox>
@@ -28,8 +28,6 @@ const formData: AllocationRoleDto = reactive({
    roleId: [],
    userId: 0
 });
-
-
 
 
 //打开页面
