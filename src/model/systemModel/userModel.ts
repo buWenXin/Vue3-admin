@@ -80,3 +80,12 @@ export interface UserPermissionsVo {
    powers: Array<string>,
    menus: Array<MenuInfoVo>
 }
+
+/**
+ * 为用户分配角色Dto
+ */
+export interface AllocationRoleDto {
+   userId: number,
+   roleId: Array<number>
+}
+
