@@ -1,11 +1,10 @@
-/**
- * 角色-分页查询
- */
 import type {AmongMenuDto, AmongPowerDto, RolePageDto, RolePageVo, RoleUpdateDto} from "@/model/systemModel/roleModel";
 import type {ResponsePageData} from "@/utils/request";
 import {Service} from "@/utils/request";
 
-
+/**
+ * 角色-分页查询
+ */
 export function getRolePage(data: RolePageDto) {
    return Service.post<ResponsePageData<RolePageVo>>("/system/getRolePage", data)
 }
