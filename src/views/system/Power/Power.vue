@@ -7,7 +7,7 @@
    </SearchPage>
 
    <div class="page_edit">
-      <el-button  v-permission="'system:power:create'" type="primary" @click="createHandle">添加权限</el-button>
+      <el-button v-permission="'system:power:create'" type="primary" @click="createHandle">添加权限</el-button>
    </div>
 
    <TablePage :get-date="getData"
@@ -33,7 +33,7 @@
    </TablePage>
 
    <PowerSave :get-data="getData" ref="powerSaveRef"></PowerSave>
-
+   
 </template>
 
 <script setup lang="ts">
@@ -75,6 +75,46 @@ const deleteHandle = (row: PowerPageVo) => {
    })
 
 }
+
+
+/*
+ * ------------------------------------------------------------<-->----------------------------------------------------------------------------------
+ */
+
+
+interface Person {
+   name: string,
+   age: number,
+}
+
+let tom: Person = {
+   age: 20,
+   name: "tom",
+}
+const proxy = new Proxy<Person>(tom, {
+   get(target: Person, p: string, receiver: any): any {
+      return Reflect.get(target, p, receiver)
+   },
+   set(target: Person, p: string, value: any, receiver: any): boolean {
+      return Reflect.set(target, p, value, receiver);
+   },
+});
+
+
+console.log(proxy.name);//同时会触发拦截器。
+
+setTimeout(() => {
+   proxy.name = "cat";
+}, 3000)
+
+import {h} from 'vue'
+
+
+const vnode = h(
+      'div', // type
+      {id: 'foo', class: 'bar',}, // props
+      []
+)
 
 
 </script>

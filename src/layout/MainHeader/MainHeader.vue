@@ -1,7 +1,7 @@
 <template>
    <div class="main_header">
       <div class="left_nav">
-         <div class="left_nav_item left_nav_item_active">
+         <div class="left_nav_item  ">
             <div>标题</div>
             <el-icon :size="14" class="nav_icon">
                <Close/>
@@ -13,7 +13,7 @@
                <Close/>
             </el-icon>
          </div>
-         <div class="left_nav_item ">
+         <div class="left_nav_item left_nav_item_active ">
             <div>标题</div>
             <el-icon :size="14" class="nav_icon">
                <Close/>
@@ -118,6 +118,7 @@ const handleSetUp = () => {
 
    .left_nav_item_active {
       background-color: #F5F7FA;
+      color: #409EFF;
    }
 }
 
@@ -132,11 +133,12 @@ const handleSetUp = () => {
 .icon_item {
    display: flex;
    cursor: pointer;
-   /*padding-right: 20px;*/
    padding-left: 20px;
 }
 
 .icon_item:hover {
    color: #409EFF;
 }
+
+
 </style>

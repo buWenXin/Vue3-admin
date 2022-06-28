@@ -1,6 +1,6 @@
 <template>
    <div>
-      <el-menu :default-active="$route.path" unique-opened style="height: 100vh" background-color="#EFF7FF">
+      <el-menu :default-active="$route.path" unique-opened style="height: 100vh" background-color="#fff">
          <div class="sidebar_title">
 <!--            <img height="60" src="../../assets/logo1.png"/>-->
             {{title}}
@@ -9,6 +9,7 @@
       </el-menu>
    </div>
 </template>
+<!--EFF7FF-->
 
 <script setup lang="ts">
 import TreeBar from "@/layout/Sidebar/TreeBar.vue";
