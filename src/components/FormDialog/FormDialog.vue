@@ -1,12 +1,10 @@
 <template>
    <el-dialog v-model="dialogVisible" :title="title" :width="width" :destroy-on-close="true" :close-on-click-modal="false" :before-close="onClose">
-
       <el-form label-width="auto" :model="fromDto" :rules="rules" ref="ruleFormRef">
          <el-row :gutter="10">
             <slot name="content"></slot>
          </el-row>
       </el-form>
-
       <template #footer>
          <div class="dialog-footer">
             <el-button @click="close">关闭</el-button>
