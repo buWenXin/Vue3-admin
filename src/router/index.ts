@@ -65,7 +65,8 @@ router.beforeEach(async (to: RouteLocationNormalized, from: RouteLocationNormali
             return to.path;
          } catch (e) {
             console.log("路由注册错误");
-            return false;
+            MyCache.removeItem("token");
+            return "/login"
          }
       }
    } else {
